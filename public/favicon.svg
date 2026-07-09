@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Skautská ľalia">
+  <rect width="64" height="64" rx="14" fill="#26324f" />
+  <g fill="#f7f0e8">
+    <!-- central petal -->
+    <path d="M32 7 C 27 17, 27 30, 32 41 C 37 30, 37 17, 32 7 Z" />
+    <!-- left petal -->
+    <path d="M32 41 C 29 31, 23 23, 19 17 C 17 25, 21 35, 32 41 Z" />
+    <!-- right petal -->
+    <path d="M32 41 C 35 31, 41 23, 45 17 C 47 25, 43 35, 32 41 Z" />
+    <!-- base / stem -->
+    <path d="M26 42 C 27 50, 30 54, 32 57 C 34 54, 37 50, 38 42 Z" />
+    <!-- binding band -->
+    <rect x="15" y="37" width="34" height="6" rx="3" />
+  </g>
+</svg>

@@ -1,9 +1,12 @@
 import type { ComponentType } from 'react'
 
 import Header from './components/Header.tsx'
-import About from './sections/About.tsx'
 import Hero from './sections/Hero.tsx'
-import Playground from './sections/Playground.tsx'
+import Kandidati from './sections/Kandidati.tsx'
+import Kontakt from './sections/Kontakt.tsx'
+import Program from './sections/Program.tsx'
+import Snem from './sections/Snem.tsx'
+import Vizia from './sections/Vizia.tsx'
 
 export type NavSection = {
   id: string
@@ -11,29 +14,30 @@ export type NavSection = {
   Component: ComponentType
 }
 
+// Single source of truth for the page: the nav menu, the section shells below,
+// and the scroll-spy all derive from this list. Add a section by writing a
+// component and adding one entry here.
 export const sections: NavSection[] = [
-  { id: 'home', label: 'Home', Component: Hero },
-  { id: 'about', label: 'About', Component: About },
-  { id: 'playground', label: 'Playground', Component: Playground },
+  { id: 'uvod', label: 'Úvod', Component: Hero },
+  { id: 'kandidati', label: 'Kandidáti', Component: Kandidati },
+  { id: 'program', label: 'Program', Component: Program },
+  { id: 'vizia', label: 'Vízia 2030', Component: Vizia },
+  { id: 'snem', label: 'Snem a voľby', Component: Snem },
+  { id: 'kontakt', label: 'Kontakt', Component: Kontakt },
 ]
 
+// Stable reference (module scope) so the scroll-spy effect doesn't re-run.
+export const sectionIds = sections.map((section) => section.id)
+
 const App = () => (
-  <div className="min-h-screen bg-slate-50 text-slate-900">
+  <div className="min-h-screen">
     <Header />
     <main>
-      <div className="flex flex-col gap-20">
-        {sections.map(({ id, Component }, index) => (
-          <section
-            key={id}
-            id={id}
-            className={`mx-auto max-w-3xl scroll-mt-20 px-6 py-24${
-              index > 0 ? 'border-t border-slate-200' : ''
-            }`}
-          >
-            <Component />
-          </section>
-        ))}
-      </div>
+      {sections.map(({ id, Component }) => (
+        <section key={id} id={id} className="scroll-mt-16">
+          <Component />
+        </section>
+      ))}
     </main>
   </div>
 )
