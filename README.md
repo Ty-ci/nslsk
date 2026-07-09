@@ -16,7 +16,8 @@ npm run dev      # start the dev server at http://localhost:5173
 | `npm run dev`       | Start the Vite dev server with hot reload         |
 | `npm run build`     | Type-check and build the static site into `dist/` |
 | `npm run preview`   | Serve the production build locally to verify it   |
-| `npm run typecheck` | Type-check without emitting                        |
+| `npm run typecheck` | Type-check without emitting                       |
+| `npm run prettier`  | Format all files with Prettier                    |
 
 ## Project structure
 
