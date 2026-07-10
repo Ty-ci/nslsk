@@ -1,39 +1,41 @@
-// Muted accent palette shared across sections. Cards, stats and badges cycle
-// through these so the page feels playful without leaning on the red brand
-// colour. Class strings are written out in full so Tailwind can detect them.
+// Flat spot-ink system for the poster/ballot look. Instead of a pastel rainbow
+// with soft tints, everything is drawn from three flat inks — near-black,
+// terracotta and a rare approval green — the way a two-to-three colour riso job
+// would. Class strings are spelled out in full so Tailwind detects them.
 
-export type Accent = 'brand' | 'forest' | 'gold' | 'sky'
+export type Ink = 'ink' | 'brand' | 'forest'
 
-export type AccentStyle = {
-  /** Solid fill with legible white text (avatars, badges). */
+export type InkStyle = {
+  /** Solid flood fill (initial blocks, stamps). */
   solid: string
-  /** Soft tinted background for chips and icon bubbles. */
-  soft: string
-  /** Accent text colour on light backgrounds. */
+  /** Legible text colour to sit on top of `solid`. */
+  onSolid: string
+  /** Spot text colour on the paper background. */
   text: string
-  /** Border colour (e.g. stat top-rules on dark backgrounds). */
+  /** Rule / border colour. */
   border: string
 }
 
-export const accentCycle: Accent[] = ['brand', 'forest', 'gold', 'sky']
+// Red leads and bookends the cycle; ink and green punctuate it.
+export const inkCycle: Ink[] = ['brand', 'ink', 'forest']
 
-export const accentStyles: Record<Accent, AccentStyle> = {
-  brand: { solid: 'bg-brand', soft: 'bg-brand/10', text: 'text-brand', border: 'border-brand' },
+export const inkStyles: Record<Ink, InkStyle> = {
+  ink: { solid: 'bg-ink', onSolid: 'text-cream', text: 'text-ink', border: 'border-ink' },
+  brand: { solid: 'bg-brand', onSolid: 'text-cream', text: 'text-brand', border: 'border-brand' },
   forest: {
     solid: 'bg-forest',
-    soft: 'bg-forest/10',
+    onSolid: 'text-cream',
     text: 'text-forest',
     border: 'border-forest',
   },
-  gold: {
-    solid: 'bg-gold-dark',
-    soft: 'bg-gold/20',
-    text: 'text-gold-dark',
-    border: 'border-gold',
-  },
-  sky: { solid: 'bg-sky-dark', soft: 'bg-sky/20', text: 'text-sky-dark', border: 'border-sky' },
 }
 
-/** Accent for the item at `index`, cycling through the palette. */
-export const accentAt = (index: number): AccentStyle =>
-  accentStyles[accentCycle[index % accentCycle.length]]
+/** Ink for the item at `index`, cycling through the three spot colours. */
+export const inkAt = (index: number): InkStyle => inkStyles[inkCycle[index % inkCycle.length]]
+
+/** Hard-offset shadow (no blur) that grows as the card lifts toward you on hover. */
+export const offsetCard =
+  'border-2 border-ink shadow-[6px_6px_0_0_var(--color-ink)] transition-[transform,box-shadow] duration-150 hover:-translate-x-[3px] hover:-translate-y-[3px] hover:shadow-[9px_9px_0_0_var(--color-ink)]'
+
+/** Same look, but fixed — for form/ballot panels that shouldn't react to hover. */
+export const offsetStatic = 'border-2 border-ink shadow-[6px_6px_0_0_var(--color-ink)]'

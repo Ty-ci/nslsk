@@ -1,6 +1,7 @@
 import type { ComponentType } from 'react'
 
 import Header from './components/Header.tsx'
+import Data from './sections/Data.tsx'
 import Hero from './sections/Hero.tsx'
 import Kandidati from './sections/Kandidati.tsx'
 import Kontakt from './sections/Kontakt.tsx'
@@ -21,6 +22,7 @@ export const sections: NavSection[] = [
   { id: 'uvod', label: 'Úvod', Component: Hero },
   { id: 'kandidati', label: 'Kandidáti', Component: Kandidati },
   { id: 'program', label: 'Program', Component: Program },
+  { id: 'data', label: 'Dáta', Component: Data },
   { id: 'vizia', label: 'Vízia 2030', Component: Vizia },
   { id: 'snem', label: 'Snem a voľby', Component: Snem },
   { id: 'kontakt', label: 'Kontakt', Component: Kontakt },
@@ -34,7 +36,7 @@ const App = () => (
     <Header />
     <main>
       {sections.map(({ id, Component }) => (
-        <section key={id} id={id} className="scroll-mt-16">
+        <section key={id} id={id} className="scroll-mt-24">
           <Component />
         </section>
       ))}

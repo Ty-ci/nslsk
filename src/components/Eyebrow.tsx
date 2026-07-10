@@ -2,16 +2,17 @@ import type { ReactNode } from 'react'
 
 type EyebrowProps = {
   children: ReactNode
-  /** Text (and dot) colour — defaults to the brand accent. */
+  /** Text (and marker) colour — defaults to the spot ink. */
   className?: string
 }
 
-// Small uppercase kicker with a friendly leading dot, used above every heading.
+// Monospace kicker set like a line pulled off an official form: a filled
+// register square, then the label in wide-tracked caps.
 const Eyebrow = ({ children, className = 'text-brand' }: EyebrowProps) => (
   <p
-    className={`flex items-center gap-2 font-heading text-sm font-semibold tracking-[0.2em] uppercase ${className}`}
+    className={`flex items-center gap-2.5 font-mono text-xs font-bold tracking-[0.25em] uppercase ${className}`}
   >
-    <span aria-hidden="true" className="inline-block size-2.5 rounded-full bg-current" />
+    <span aria-hidden="true" className="inline-block size-2.5 bg-current" />
     {children}
   </p>
 )

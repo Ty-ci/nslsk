@@ -2,13 +2,19 @@ import type { ReactNode } from 'react'
 
 type PillProps = {
   children: ReactNode
-  /** Colour + padding, e.g. `bg-brand/10 px-3 py-1 text-sm text-brand`. */
+  /** Colour + padding, e.g. `border-brand text-brand px-3 py-1`. */
   className?: string
 }
 
-// Rounded label chip used for roles, tags and badges.
-const Pill = ({ children, className = 'bg-brand/10 px-3 py-1 text-sm text-brand' }: PillProps) => (
-  <span className={`inline-flex w-fit items-center gap-2 rounded-full font-semibold ${className}`}>
+// Rectangular stamp-tag used for roles, dates and badges — bordered, squared
+// off and set in monospace caps like a rubber stamp.
+const Pill = ({
+  children,
+  className = 'border-ink px-3 py-1 text-ink',
+}: PillProps) => (
+  <span
+    className={`inline-flex w-fit items-center gap-2 border-2 font-mono text-xs font-bold tracking-wider uppercase ${className}`}
+  >
     {children}
   </span>
 )

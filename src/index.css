@@ -1,30 +1,65 @@
 @import 'tailwindcss';
 
-/* Design tokens inspired by the Slovenský skauting visual style:
-   a muted terracotta primary used sparingly, deep slate-navy bands,
-   soft cream backgrounds and a friendly set of muted accents (sage,
-   ochre, dusty teal) for a warmer, more playful feel. */
+/* ── Design language: "Volebný plagát" ──────────────────────────────────────
+   A risograph election-poster / official-ballot look for the SLSK candidacy.
+   Deliberately un-slick: warm paper stock, ONE spot ink (terracotta) over
+   near-black, hard corners, offset (never blurred) shadows, monospace metadata
+   set like a ballot form, and condensed poster headlines. Two inks do the work
+   of a whole rainbow. */
 @theme {
-  --color-brand: #cf6a4c;
-  --color-brand-dark: #b3563b;
-  --color-navy: #26324f;
-  --color-cream: #f7f0e8;
-  --color-sand: #efe1d2;
+  /* Ink + paper stock. */
+  --color-ink: #1b1a16;
+  --color-cream: #f4ecdd;
+  --color-sand: #e7d9c3;
 
-  /* Muted accent family — rotated across cards, stats and badges. */
-  --color-forest: #5f8f72;
-  --color-gold: #dca94e;
-  --color-gold-dark: #b07f2b;
+  /* The single spot colour — used sparingly, like a second riso pass. */
+  --color-brand: #cf5836;
+  --color-brand-dark: #b3462a;
+
+  /* A rare secondary spot for contrast (approval green). */
+  --color-forest: #4f7c5c;
+
+  /* Kept for the odd tint; the palette no longer cycles through these. */
+  --color-navy: #1b1a16;
+  --color-gold: #d8a13a;
   --color-sky: #6f9aa6;
-  --color-sky-dark: #52798a;
 
-  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-sans: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+  --font-mono: 'Space Mono', ui-monospace, 'SFMono-Regular', monospace;
   --font-heading: 'Barlow Condensed', system-ui, sans-serif;
   --font-display: 'Anton', 'Barlow Condensed', system-ui, sans-serif;
 }
 
 @layer base {
   body {
-    @apply bg-cream font-sans text-navy antialiased;
+    @apply font-sans text-ink antialiased;
+    /* Paper stock with a faint printed dot-grain over the whole page. */
+    background-color: var(--color-cream);
+    background-image: radial-gradient(rgba(27, 26, 22, 0.055) 1px, transparent 1.6px);
+    background-size: 24px 24px;
   }
+
+  ::selection {
+    background-color: var(--color-brand);
+    color: var(--color-cream);
+  }
+}
+
+/* Dark band: the same dot-grain, inverted, so ink sections still read as
+   printed paper rather than a flat UI surface. */
+@utility band-ink {
+  background-color: var(--color-ink);
+  background-image: radial-gradient(rgba(244, 236, 221, 0.06) 1px, transparent 1.6px);
+  background-size: 24px 24px;
+}
+
+/* Halftone-ish diagonal hatch, for stamps and accent fills. */
+@utility hatch {
+  background-image: repeating-linear-gradient(
+    45deg,
+    currentColor 0,
+    currentColor 1px,
+    transparent 1px,
+    transparent 6px
+  );
 }

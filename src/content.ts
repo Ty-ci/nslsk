@@ -93,6 +93,98 @@ export const priorities: Priority[] = [
   },
 ]
 
+// ── Ilustračné dáta pre sekciu „Rozhodujeme podľa dát" ──────────────────────
+// Vymyslené, ale realisticky vyzerajúce časové rady 2019 – 2026: členská
+// základňa (s prepadom počas pandémie a následným rastom smerom k vízii 10 000),
+// zakladanie nových zborov a udržanie vedúcich. Každá metrika sa v grafe
+// zobrazuje samostatne, prepínaním záložiek.
+
+export type MetricColor = 'brand' | 'forest' | 'ink'
+
+export type SeriesPoint = {
+  year: string
+  value: number
+}
+
+export type Metric = {
+  id: string
+  /** Krátky text na prepínacom tlačidle. */
+  tab: string
+  /** Plný názov metriky. */
+  label: string
+  /** Jednotka za hodnotou, napr. „členov" alebo „%". */
+  unit: string
+  /** Spot farba série. */
+  color: MetricColor
+  /** Voliteľný cieľ (vykreslí sa ako horizontálna méta v grafe). */
+  target?: number
+  /** Rozhodnutie, ktoré z dát vyplýva — pointa celej sekcie. */
+  insight: string
+  points: SeriesPoint[]
+}
+
+export const metrics: Metric[] = [
+  {
+    id: 'clenovia',
+    tab: 'Členovia',
+    label: 'Členská základňa',
+    unit: 'členov',
+    color: 'brand',
+    target: 10000,
+    insight:
+      'Po prepade počas pandémie rastieme štvrtý rok po sebe. Do vízie 10 000 nám chýbajú približne 3 % — preto tlačíme na nábor a udržanie.',
+    points: [
+      { year: '2019', value: 8100 },
+      { year: '2020', value: 7600 },
+      { year: '2021', value: 7400 },
+      { year: '2022', value: 7900 },
+      { year: '2023', value: 8500 },
+      { year: '2024', value: 9050 },
+      { year: '2025', value: 9400 },
+      { year: '2026', value: 9700 },
+    ],
+  },
+  {
+    id: 'zbory',
+    tab: 'Nové zbory',
+    label: 'Novozaložené zbory za rok',
+    unit: 'nových zborov',
+    color: 'forest',
+    insight:
+      'Zakladanie nových zborov zrýchľuje. Ukazuje sa, že investícia do zázemia a metodickej podpory sa vracia — v tomto tempe chceme pokračovať.',
+    points: [
+      { year: '2019', value: 2 },
+      { year: '2020', value: 1 },
+      { year: '2021', value: 1 },
+      { year: '2022', value: 3 },
+      { year: '2023', value: 4 },
+      { year: '2024', value: 5 },
+      { year: '2025', value: 6 },
+      { year: '2026', value: 7 },
+    ],
+  },
+  {
+    id: 'udrzanie',
+    tab: 'Udržanie vedúcich',
+    label: 'Udržanie vedúcich medzi rokmi',
+    unit: '%',
+    color: 'ink',
+    target: 85,
+    insight:
+      'Menej vyhorených vedúcich znamená stabilnejšie oddiely. Sledujeme to každý rok — cieľ je dostať sa a udržať nad 80 %.',
+    points: [
+      { year: '2019', value: 72 },
+      { year: '2020', value: 69 },
+      { year: '2021', value: 66 },
+      { year: '2022', value: 70 },
+      { year: '2023', value: 74 },
+      { year: '2024', value: 77 },
+      { year: '2025', value: 79 },
+      { year: '2026', value: 81 },
+    ],
+  },
+]
+
 export type Stat = {
   value: string
   label: string

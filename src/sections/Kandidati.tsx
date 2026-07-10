@@ -2,48 +2,51 @@ import Pill from '../components/Pill.tsx'
 import Section from '../components/Section.tsx'
 import SectionIntro from '../components/SectionIntro.tsx'
 import { candidates } from '../content.ts'
-import { accentAt } from '../theme.ts'
+import { inkAt, offsetCard } from '../theme.ts'
 
 const Kandidati = () => (
-  <Section className="bg-cream">
+  <Section>
     <SectionIntro
+      index="01"
       eyebrow="Kandidáti"
       title="Štyria ľudia, jeden tím"
       lead="Kandidujeme spoločne — jedna na náčelníčku a traja na členov Náčelníctva SLSK. Každý z nás prináša svoju tému, ale program si stojíme za celý."
     />
 
-    <div className="mt-12 grid gap-6 sm:grid-cols-2">
+    <div className="mt-14 grid gap-8 sm:grid-cols-2">
       {candidates.map((candidate, i) => {
-        const accent = accentAt(i)
+        const ink = inkAt(i)
 
         return (
-          <article
-            key={candidate.name}
-            className="group flex flex-col rounded-3xl border border-navy/10 bg-white p-6 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-lg"
-          >
-            <div className="flex items-center gap-4">
+          <article key={candidate.name} className={`flex flex-col bg-cream p-6 ${offsetCard}`}>
+            <div className="flex items-start gap-4">
+              {/* Squared initials block — a printed candidate portrait stand-in. */}
               <div
-                className={`flex size-16 shrink-0 rotate-3 items-center justify-center rounded-2xl font-heading text-xl font-bold text-white transition-transform duration-200 group-hover:rotate-0 ${accent.solid}`}
+                className={`flex size-16 shrink-0 items-center justify-center border-2 border-ink font-display text-2xl ${ink.solid} ${ink.onSolid}`}
               >
                 {candidate.initials}
               </div>
-              <div>
-                <h3 className="font-heading text-2xl font-bold text-navy">{candidate.name}</h3>
-                <p className="text-sm text-navy/60">
+              <div className="flex-1">
+                <div className="flex items-center gap-2">
+                  <span className="font-mono text-xs font-bold text-brand">
+                    {String(i + 1).padStart(2, '0')} / {String(candidates.length).padStart(2, '0')}
+                  </span>
+                </div>
+                <h3 className="mt-1 font-heading text-2xl leading-none font-bold text-ink uppercase">
+                  {candidate.name}
+                </h3>
+                <p className="mt-1 font-mono text-[11px] tracking-wide text-ink/55 uppercase">
                   prez. {candidate.scoutName} · {candidate.troop}
                 </p>
               </div>
             </div>
 
-            <Pill className={`mt-5 px-3 py-1 text-sm ${accent.soft} ${accent.text}`}>
-              {candidate.role}
-            </Pill>
+            <Pill className={`mt-5 px-3 py-1 ${ink.border} ${ink.text}`}>{candidate.role}</Pill>
 
-            <p className="mt-4 text-navy/80">{candidate.bio}</p>
+            <p className="mt-4 text-ink/80">{candidate.bio}</p>
 
-            <p className="mt-4 border-t border-navy/10 pt-4 text-sm text-navy/60">
-              <span className="font-semibold text-navy/80">Preferované témy:</span>{' '}
-              {candidate.focus}
+            <p className="mt-5 border-t-2 border-dashed border-ink/25 pt-4 font-mono text-[11px] leading-relaxed text-ink/60 uppercase">
+              <span className="text-ink">Témy —</span> {candidate.focus}
             </p>
           </article>
         )
