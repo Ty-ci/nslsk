@@ -1,11 +1,8 @@
 @import 'tailwindcss';
 
 /* ── Design language: "Volebný plagát" ──────────────────────────────────────
-   A risograph election-poster / official-ballot look for the SLSK candidacy.
-   Deliberately un-slick: warm paper stock, ONE spot ink (terracotta) over
-   near-black, hard corners, offset (never blurred) shadows, monospace metadata
-   set like a ballot form, and condensed poster headlines. Two inks do the work
-   of a whole rainbow. */
+   A risograph election-poster look for the SLSK candidacy: warm paper stock,
+   ONE spot ink (terracotta) over near-black. */
 @theme {
   /* Ink + paper stock. */
   --color-ink: #1b1a16;
@@ -16,18 +13,13 @@
   --color-brand: #cf5836;
   --color-brand-dark: #b3462a;
 
-  /* A rare secondary spot for contrast (approval green). */
-  --color-forest: #4f7c5c;
-
-  /* Kept for the odd tint; the palette no longer cycles through these. */
-  --color-navy: #1b1a16;
-  --color-gold: #d8a13a;
-  --color-sky: #6f9aa6;
-
   --font-sans: 'Space Grotesk', system-ui, -apple-system, sans-serif;
   --font-mono: 'Space Mono', ui-monospace, 'SFMono-Regular', monospace;
   --font-heading: 'Barlow Condensed', system-ui, sans-serif;
   --font-display: 'Anton', 'Barlow Condensed', system-ui, sans-serif;
+
+  /* One slow rotation of the scout lily — a print press turning, not a spinner. */
+  --animate-spin-slow: spin 12s linear infinite;
 }
 
 @layer base {
@@ -43,23 +35,4 @@
     background-color: var(--color-brand);
     color: var(--color-cream);
   }
-}
-
-/* Dark band: the same dot-grain, inverted, so ink sections still read as
-   printed paper rather than a flat UI surface. */
-@utility band-ink {
-  background-color: var(--color-ink);
-  background-image: radial-gradient(rgba(244, 236, 221, 0.06) 1px, transparent 1.6px);
-  background-size: 24px 24px;
-}
-
-/* Halftone-ish diagonal hatch, for stamps and accent fills. */
-@utility hatch {
-  background-image: repeating-linear-gradient(
-    45deg,
-    currentColor 0,
-    currentColor 1px,
-    transparent 1px,
-    transparent 6px
-  );
 }
