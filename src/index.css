@@ -2,7 +2,7 @@
 
 /* ── Design language: "Volebný plagát" ──────────────────────────────────────
    A risograph election-poster look for the SLSK candidacy: warm paper stock,
-   ONE spot ink (terracotta) over near-black. */
+   ONE spot ink (terracotta) over near-black, with a rare green third pass. */
 @theme {
   /* Ink + paper stock. */
   --color-ink: #1b1a16;
@@ -12,6 +12,9 @@
   /* The single spot colour — used sparingly, like a second riso pass. */
   --color-brand: #cf5836;
   --color-brand-dark: #b3462a;
+
+  /* Third pass, kept rare: scout green for approval / affirmative accents. */
+  --color-forest: #3f6b4a;
 
   --font-sans: 'Space Grotesk', system-ui, -apple-system, sans-serif;
   --font-mono: 'Space Mono', ui-monospace, 'SFMono-Regular', monospace;
@@ -35,4 +38,19 @@
     background-color: var(--color-brand);
     color: var(--color-cream);
   }
+}
+
+@utility band-ink {
+  /* Full-bleed ink band: the same dot-grain, inverted, so the paper texture
+     survives the flood fill. */
+  background-color: var(--color-ink);
+  background-image: radial-gradient(rgba(244, 236, 221, 0.07) 1px, transparent 1.6px);
+  background-size: 24px 24px;
+}
+
+@utility band-sand {
+  /* Second paper stock — one shade darker, for banding sections apart. */
+  background-color: var(--color-sand);
+  background-image: radial-gradient(rgba(27, 26, 22, 0.06) 1px, transparent 1.6px);
+  background-size: 24px 24px;
 }
