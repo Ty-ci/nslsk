@@ -39,3 +39,6 @@ export const offsetCard =
 
 /** Same look, but fixed — for form/ballot panels that shouldn't react to hover. */
 export const offsetStatic = 'border-2 border-ink shadow-[6px_6px_0_0_var(--color-ink)]'
+
+/** Offset panel for the ink bands, where the shadow has to print in paper. */
+export const offsetOnDark = 'border-2 border-cream shadow-[6px_6px_0_0_var(--color-cream)]'

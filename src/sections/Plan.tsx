@@ -1,43 +1,49 @@
+import Checkbox from '../components/Checkbox.tsx'
 import Section from '../components/Section.tsx'
 import SectionIntro from '../components/SectionIntro.tsx'
+import Tbd from '../components/Tbd.tsx'
 import { milestones } from '../content.ts'
 
 const Plan = () => (
-  <Section className="band-ink text-cream">
+  <Section className="border-t-2 border-ink band-ink text-cream">
     <SectionIntro
-      index="04"
-      eyebrow="Čo chceme dosiahnuť"
+      label="Čo chceme dosiahnuť"
       title="Tri roky, štyri míľniky"
+      note="0 / 4 splnené"
       lead="Aby sa nás dalo priebežne kontrolovať, rozpísali sme program do konkrétnych míľnikov — od prvých sto dní až po koniec funkčného obdobia."
       onDark
     />
 
-    <ol className="mt-14 grid gap-px border-2 border-cream/20 bg-cream/20 md:grid-cols-2 lg:grid-cols-4">
+    {/* A ballot-style checklist: one box per milestone, nothing marked yet
+        because the term hasn't started. */}
+    <ol className="mt-14 max-w-3xl">
       {milestones.map((milestone, i) => (
-        <li key={milestone.horizon} className="flex flex-col band-ink p-6">
-          <div className="border-t-4 border-brand pt-4">
-            <span className="font-mono text-[10px] font-bold tracking-widest text-cream/40">
+        <li
+          key={milestone.horizon}
+          className="flex gap-5 border-b-2 border-dashed border-cream/20 py-7 last:border-b-0"
+        >
+          <Checkbox className="mt-1.5 size-7 shrink-0 text-cream/45" />
+
+          <div className="flex-1">
+            <span className="label text-cream/40">
               {String(i + 1).padStart(2, '0')} / {String(milestones.length).padStart(2, '0')}
             </span>
-            <h3 className="mt-2 font-display text-3xl leading-none text-cream uppercase">
-              {milestone.horizon}
-            </h3>
-            {milestone.note && (
-              <p className="mt-2 font-mono text-[11px] tracking-wide text-brand uppercase">
-                {milestone.note}
-              </p>
+
+            <div className="mt-2 flex flex-wrap items-baseline gap-x-4">
+              <h3 className="font-display text-3xl leading-none text-cream uppercase">
+                {milestone.horizon}
+              </h3>
+              {milestone.note && <span className="label text-brand">{milestone.note}</span>}
+            </div>
+
+            {milestone.body ? (
+              <p className="mt-4 max-w-xl text-cream/80">{milestone.body}</p>
+            ) : (
+              <Tbd className="mt-4 max-w-sm" onDark>
+                ciele pre tento míľnik
+              </Tbd>
             )}
           </div>
-
-          {milestone.body ? (
-            <p className="mt-5 text-cream/80">{milestone.body}</p>
-          ) : (
-            // Same "unfilled form field" idea as `Tbd`, inverted for the ink band.
-            <p className="mt-5 flex-1 border-2 border-dashed border-cream/25 p-4 font-mono text-[11px] leading-relaxed tracking-wide text-cream/45 uppercase">
-              <span className="text-cream/70">Doplniť — </span>
-              ciele pre tento míľnik
-            </p>
-          )}
         </li>
       ))}
     </ol>

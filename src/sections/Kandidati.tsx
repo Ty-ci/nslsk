@@ -1,76 +1,71 @@
+import FormLink from '../components/FormLink.tsx'
 import Photo from '../components/Photo.tsx'
 import Section from '../components/Section.tsx'
 import SectionIntro from '../components/SectionIntro.tsx'
 import { candidates } from '../content.ts'
-import { inkAt, offsetCard } from '../theme.ts'
+import { inkAt } from '../theme.ts'
+
+const TILTS = [-1.8, 1.5, -1.3, 2]
 
 const Kandidati = () => (
   <Section>
     <SectionIntro
-      index="01"
-      eyebrow="Kandidáti"
+      label="Kandidáti"
       title="Štyria ľudia, jeden tím"
-      lead="Ku každému z nás nájdete jeho témy a celý kandidačný formulár tak, ako ho videl snem — nič skrátené, nič preformulované."
+      note="01 / 04 – 04 / 04"
+      lead="Ku každému z nás nájdete jeho témy — a celý kandidačný formulár tak, ako ho videl snem. Nič skrátené, nič preformulované."
     />
 
-    <div className="mt-14 grid gap-8 sm:grid-cols-2">
+    {/* One numbered entry per candidate: portrait pasted into the margin, the
+        record running beside it, a heavy rule between entries. */}
+    <div className="mt-14">
       {candidates.map((candidate, i) => {
         const ink = inkAt(i)
 
         return (
-          <article key={candidate.name} className={`flex flex-col bg-cream p-6 ${offsetCard}`}>
-            <div className="flex items-start gap-5">
+          <article
+            key={candidate.name}
+            className="grid gap-8 border-t-2 border-ink py-12 first:border-t-0 first:pt-0 sm:grid-cols-[10rem_1fr] sm:gap-12 md:grid-cols-[12rem_1fr]"
+          >
+            <div>
               <Photo
                 photoId={candidate.photoId}
                 name={candidate.name}
                 initials={candidate.initials}
                 ink={ink}
-                className="w-28 shrink-0"
+                tilt={TILTS[i % TILTS.length]}
               />
-              <div className="flex-1">
-                <span className="font-mono text-xs font-bold text-brand">
-                  {String(i + 1).padStart(2, '0')} / {String(candidates.length).padStart(2, '0')}
-                </span>
-                <h3 className="mt-1 font-display text-4xl leading-none text-ink uppercase">
-                  {candidate.name}
-                </h3>
-                <a
-                  href={candidate.formHref}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="mt-3 inline-flex items-center gap-1.5 border-b-2 border-ink/25 pb-0.5 font-mono text-[11px] font-bold tracking-wide text-ink/70 uppercase hover:border-brand hover:text-brand"
-                >
-                  Kandidačný formulár
-                  <span aria-hidden="true">↗</span>
-                </a>
-              </div>
+              <FormLink href={candidate.formHref} name={candidate.name} className="mt-8" />
             </div>
 
-            <p className="mt-6 border-t-2 border-ink pt-4 font-mono text-[11px] font-bold tracking-[0.2em] text-ink/50 uppercase">
-              Moje témy
-            </p>
+            <div>
+              <h3 className="mt-2 font-display text-5xl leading-none text-ink uppercase md:text-6xl">
+                {candidate.name}
+              </h3>
 
-            <ul className="mt-4 flex flex-1 flex-col gap-4">
-              {candidate.topics.map((topic) => (
-                <li key={topic.title} className={`border-l-4 pl-4 ${ink.border}`}>
-                  <h4 className="font-heading text-xl/tight font-bold text-ink uppercase">
-                    {topic.title}
-                  </h4>
-                  <p className="mt-1 text-ink/80">{topic.summary}</p>
-                  {topic.link && (
-                    <a
-                      href={topic.link.href}
-                      target="_blank"
-                      rel="noreferrer"
-                      className={`mt-2 inline-flex items-center gap-1.5 font-mono text-[10px] font-bold tracking-wider uppercase hover:underline ${ink.text}`}
-                    >
-                      Viac k téme
-                      <span aria-hidden="true">↗</span>
-                    </a>
-                  )}
-                </li>
-              ))}
-            </ul>
+              <dl className="mt-6 space-y-6">
+                {candidate.topics.map((topic) => (
+                  <div key={topic.title} className={`border-l-4 pl-4 ${ink.border}`}>
+                    <dt className="font-heading text-2xl leading-none font-bold text-ink uppercase">
+                      {topic.title}
+                    </dt>
+                    <dd className="mt-2 max-w-xl text-ink/80">
+                      {topic.summary}
+                      {topic.link && (
+                        <a
+                          href={topic.link.href}
+                          target="_blank"
+                          rel="noreferrer"
+                          className={`ml-2 label whitespace-nowrap hover:underline ${ink.text}`}
+                        >
+                          viac ↗
+                        </a>
+                      )}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
           </article>
         )
       })}

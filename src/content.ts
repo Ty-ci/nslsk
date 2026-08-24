@@ -184,6 +184,14 @@ export type Meeting = {
 // Stretnutia s členmi. Ďalšie termíny sa budú dopĺňať priebežne.
 export const meetings: Meeting[] = []
 
+/**
+ * Najbližší termín, alebo `undefined`, kým žiadny nie je vypísaný.
+ * `meetings` je zatiaľ prázdne — kandidáti termíny doplnia, dovtedy stránka
+ * ukazuje pozvánku namiesto dátumu.
+ */
+// eslint-disable-next-line sonarjs/no-empty-collection
+export const nextMeeting: Meeting | undefined = meetings[0]
+
 export const contact = {
   intro:
     'Radi by sme vám osobne (alebo aspoň cez obrazovky) odprezentovali náš program a víziu, s ktorou do toho ideme. Ešte dôležitejšie pre nás ale je počuť *váš* pohľad a spätnú väzbu.',

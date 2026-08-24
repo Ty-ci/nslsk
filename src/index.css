@@ -2,7 +2,10 @@
 
 /* ── Design language: "Volebný plagát" ──────────────────────────────────────
    A risograph election-poster look for the SLSK candidacy: warm paper stock,
-   ONE spot ink (terracotta) over near-black, with a rare green third pass. */
+   ONE spot ink (terracotta) over near-black, with a rare green third pass.
+   Everything is flat and hard-edged — 2px rules, offset shadows with no blur,
+   condensed caps for headlines and monospace caps for every label. Nothing is
+   rounded, nothing is soft, nothing is hand-drawn: it is printed. */
 @theme {
   /* Ink + paper stock. */
   --color-ink: #1b1a16;
@@ -53,4 +56,23 @@
   background-color: var(--color-sand);
   background-image: radial-gradient(rgba(27, 26, 22, 0.06) 1px, transparent 1.6px);
   background-size: 24px 24px;
+}
+
+/* Monospace caps: running heads, field names, figures, captions. Everything the
+   printed form itself says, as opposed to what has been filled into it. */
+@utility label {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+/* Dotted leader, as on an official form: fills the gap between a field and the
+   value entered against it. */
+@utility leader {
+  flex: 1 1 0%;
+  border-bottom: 2px dotted currentColor;
+  opacity: 0.3;
+  transform: translateY(-0.3rem);
 }

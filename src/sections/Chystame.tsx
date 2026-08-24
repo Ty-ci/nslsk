@@ -19,11 +19,11 @@ const upcoming = [
 ]
 
 const Chystame = () => (
-  <Section className="border-t-2 border-ink band-sand">
+  <Section className="border-t-2 border-ink band-sand" py="py-20 md:py-24">
     <SectionIntro
-      index="06"
-      eyebrow="Chystáme"
+      label="Chystáme"
       title="Ešte na tom pracujeme"
+      note="2 prázdne strany"
       lead="Nechceme čakať s webom, kým bude všetko hotové. Tieto dve časti dopĺňame priebežne."
     />
 

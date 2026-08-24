@@ -10,8 +10,10 @@ type SectionProps = {
 
 // Shared full-bleed band + centred column. Light bands are left transparent so
 // the page's paper grain runs continuously; ink bands opt into `band-ink`.
+// `relative overflow-hidden` keeps stamps and misregistered plates that hang
+// off the edge of a section from widening the page.
 const Section = ({ children, className = '', py = 'py-20 md:py-28' }: SectionProps) => (
-  <div className={className}>
+  <div className={`relative overflow-hidden ${className}`}>
     <div className={`mx-auto max-w-6xl px-6 ${py}`}>{children}</div>
   </div>
 )

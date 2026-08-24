@@ -5,9 +5,9 @@ import Button from './Button.tsx'
 const Header = () => {
   const activeId = useActiveSection(sectionIds)
 
-  // Brand links to the first section; the contact section gets the CTA button,
-  // so the menu shows everything else. `number` mirrors the printed index in
-  // each section's own masthead, so the nav and the page agree.
+  // Brand links to the first section; the meetings section gets the CTA, so the
+  // menu shows everything else. `number` is the printed index of the section, so
+  // the nav reads like the contents line of a poster.
   const [homeId] = sectionIds
   const menuSections = sections
     .map((section, i) => ({ ...section, number: String(i).padStart(2, '0') }))
@@ -37,19 +37,22 @@ const Header = () => {
             <li key={section.id}>
               <a
                 href={`#${section.id}`}
-                className={`border-2 px-3 py-1.5 font-mono text-xs font-bold tracking-wider uppercase transition-colors ${
+                className={`block border-2 px-3 py-1.5 label transition-colors ${
                   activeId === section.id
                     ? 'border-ink bg-ink text-cream'
                     : 'border-transparent text-ink/70 hover:border-ink hover:text-ink'
                 }`}
               >
-                <span className="text-brand">{section.number}</span> {section.label}
+                <span className={activeId === section.id ? 'text-brand' : 'text-brand/80'}>
+                  {section.number}
+                </span>{' '}
+                {section.label}
               </a>
             </li>
           ))}
         </ul>
 
-        <Button href="#stretnutia" size="sm">
+        <Button href="#stretnutia" variant="sun" size="sm" className="shrink-0">
           Stretnime sa
         </Button>
       </nav>

@@ -1,29 +1,30 @@
 import type { ReactNode } from 'react'
 
-import Eyebrow from './Eyebrow.tsx'
+import Label from './Label.tsx'
 
 type SectionIntroProps = {
-  eyebrow: string
+  label: string
   title: ReactNode
   lead?: ReactNode
-  /** Two-digit section index printed large beside the heading, e.g. "02". */
-  index?: string
-  /** Use light text for ink bands. */
+  /** Short figure printed at the right end of the running head, e.g. "4 záznamy". */
+  note?: string
+  /** Use light rules and text on the ink band. */
   onDark?: boolean
 }
 
-// Flush-left masthead: a printed section index, monospace kicker, a tight
-// condensed headline and a lead — no centring, no soft gradients.
-const SectionIntro = ({ eyebrow, title, lead, index, onDark = false }: SectionIntroProps) => (
-  <div className="border-t-2 border-current pt-5">
+// Flush-left masthead ruled off by a heavy line, the way a poster opens a
+// panel: a monospace kicker on the left, a printed figure on the right, then a
+// tight condensed headline in caps. No centring, no soft gradients.
+const SectionIntro = ({ label, title, lead, note, onDark = false }: SectionIntroProps) => (
+  <div className={`border-t-2 pt-5 ${onDark ? 'border-cream/40' : 'border-ink'}`}>
     <div className="flex items-baseline gap-4">
-      {index && (
-        <span className={`font-mono text-sm font-bold ${onDark ? 'text-cream/50' : 'text-ink/40'}`}>
-          {index} /
-        </span>
+      <Label className="text-brand">{label}</Label>
+      <span aria-hidden="true" className={`leader ${onDark ? 'text-cream' : 'text-ink'}`} />
+      {note && (
+        <span className={`shrink-0 label ${onDark ? 'text-cream/45' : 'text-ink/40'}`}>{note}</span>
       )}
-      <Eyebrow className="text-brand">{eyebrow}</Eyebrow>
     </div>
+
     <h2
       className={`mt-4 max-w-4xl font-heading text-5xl font-bold tracking-tight uppercase md:text-6xl ${
         onDark ? 'text-cream' : 'text-ink'
@@ -31,6 +32,7 @@ const SectionIntro = ({ eyebrow, title, lead, index, onDark = false }: SectionIn
     >
       {title}
     </h2>
+
     {lead && (
       <p className={`mt-5 max-w-2xl text-lg ${onDark ? 'text-cream/70' : 'text-ink/75'}`}>{lead}</p>
     )}

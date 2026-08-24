@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
 import { photoUrl } from '../content.ts'
-import type { InkStyle } from '../theme.ts'
+import { type InkStyle, inkStyles } from '../theme.ts'
 
 type PhotoProps = {
   photoId: string
@@ -9,19 +9,33 @@ type PhotoProps = {
   name: string
   /** Letter shown if the Drive file isn't public (or fails to load). */
   initials: string
-  ink: InkStyle
+  /** Flood fill behind the fallback initial. */
+  ink?: InkStyle
+  /** Size + placement of the pasted-up portrait, e.g. `w-40`. */
   className?: string
+  /** Tilt in degrees. Alternate the sign between photos so a row looks pasted up. */
+  tilt?: number
 }
 
-// Candidate portrait pulled straight off Google Drive. Drive share links are
-// unreliable as image sources (permissions, hotlink limits), so a failed load
-// falls back to a flood-filled initial block — the poster still prints.
-const Photo = ({ photoId, name, initials, ink, className = '' }: PhotoProps) => {
+// Candidate portrait pulled straight off Google Drive, pasted onto the poster
+// slightly askew and printed in one plate: 2px rule, hard offset shadow, no
+// rounding. Drive share links are unreliable as image sources (permissions,
+// hotlink limits), so a failed load falls back to a flood-filled initial —
+// the poster still prints.
+const Photo = ({
+  photoId,
+  name,
+  initials,
+  ink = inkStyles.ink,
+  className = '',
+  tilt = -1.5,
+}: PhotoProps) => {
   const [failed, setFailed] = useState(false)
 
   return (
     <div
-      className={`relative aspect-square overflow-hidden border-2 border-ink ${ink.solid} ${className}`}
+      className={`relative aspect-4/5 shrink-0 overflow-hidden border-2 border-ink shadow-[6px_6px_0_0_var(--color-ink)] transition-transform duration-150 hover:rotate-0 ${ink.solid} ${className}`}
+      style={{ rotate: `${tilt}deg` }}
     >
       {failed ? (
         <span
@@ -33,10 +47,7 @@ const Photo = ({ photoId, name, initials, ink, className = '' }: PhotoProps) => 
         <img
           src={photoUrl(photoId)}
           alt={name}
-          loading="lazy"
-          // Grayscale so four portraits from four cameras read as one print run;
-          // colour returns on hover.
-          className="size-full object-cover grayscale transition-[filter] duration-200 hover:grayscale-0"
+          className="size-full object-cover"
           onError={() => setFailed(true)}
         />
       )}
