@@ -4,8 +4,8 @@ import HashScroll from '@/app/_components/HashScroll'
 import { type SectionId, sections } from '@/app/_lib/navigation'
 import Hero from '@/app/_sections/Hero'
 import Kandidati from '@/app/_sections/Kandidati'
-import Kontakt from '@/app/_sections/Kontakt'
 import Program from '@/app/_sections/Program'
+import SpojmeSa from '@/app/_sections/SpojmeSa'
 import Temy from '@/app/_sections/Temy'
 
 // The section order and labels live in `_lib/navigation.ts`; this map is where
@@ -16,13 +16,15 @@ const sectionComponents: Record<SectionId, ComponentType> = {
   kandidati: Kandidati,
   temy: Temy,
   program: Program,
-  stretnutia: Kontakt,
+  'spojme-sa': SpojmeSa,
 }
+
+export const dynamic = 'force-dynamic'
 
 const Home = () => (
   <>
-    {/* Arriving from the Q&A page as `/#temy` is a client-side navigation, so
-        the browser doesn't scroll to the anchor by itself. */}
+    {/* Deep links (`/dev#otazky`) can land before the sheet-backed blocks have
+        rendered, and a hash isn't part of the route — so scroll on arrival. */}
     <HashScroll />
 
     {sections.map(({ id }) => {

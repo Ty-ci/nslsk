@@ -1,64 +1,32 @@
 'use client'
 
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-import type { ReactNode } from 'react'
-
 import Button from '@/app/_components/Button'
 import { useActiveSection } from '@/app/_hooks/useActiveSection'
-import { qaPath, type SectionId, sectionIds, sectionPath, sections } from '@/app/_lib/navigation'
+import { anchorHref, qaAnchor, sectionIds, sections } from '@/app/_lib/navigation'
 
 const chip = 'block border-2 px-3 py-1.5 label transition-colors'
 const chipOn = 'border-ink bg-ink text-cream'
 const chipOff = 'border-transparent text-ink/70 hover:border-ink hover:text-ink'
 
-type SectionLinkProps = {
-  id: SectionId
-  /** On the one-pager an anchor scrolls; elsewhere it has to be a route. */
-  isHome: boolean
-  className?: string
-  'aria-label'?: string
-  children: ReactNode
-}
-
-// The nav points at sections of the home page, so from the Q&A subpage the same
-// item has to navigate first and scroll after (`HashScroll` handles the hash).
-const SectionLink = ({
-  id,
-  isHome,
-  className = '',
-  'aria-label': ariaLabel,
-  children,
-}: SectionLinkProps) =>
-  isHome ? (
-    <a href={`#${id}`} className={className} aria-label={ariaLabel}>
-      {children}
-    </a>
-  ) : (
-    <Link href={sectionPath(id)} className={className} aria-label={ariaLabel}>
-      {children}
-    </Link>
-  )
-
+// Everything the nav points at now lives on this one page, so every item is a
+// plain in-page anchor — `#id`, resolved by the browser against whatever URL the
+// page is served from (see `anchorHref` in `_lib/navigation.ts`).
 const Header = () => {
-  const pathname = usePathname()
-  const isHome = pathname === '/'
   const activeId = useActiveSection(sectionIds)
 
-  // Brand links to the first section; the meetings section gets the CTA, so the
-  // menu shows everything else. `number` is the printed index of the section, so
-  // the nav reads like the contents line of a poster.
+  // Brand links to the first section; „Spojme sa" gets the CTA, so the menu
+  // shows everything else. `number` is the printed index of the section, so the
+  // nav reads like the contents line of a poster.
   const [homeId] = sectionIds
   const menuSections = sections
     .map((section, i) => ({ ...section, number: String(i).padStart(2, '0') }))
-    .filter((section) => section.id !== homeId && section.id !== 'stretnutia')
+    .filter((section) => section.id !== homeId && section.id !== 'spojme-sa')
 
   return (
     <header className="sticky top-0 z-20 border-b-2 border-ink bg-cream/95 backdrop-blur-sm">
       <nav className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-6 py-3">
-        <SectionLink
-          id={homeId}
-          isHome={isHome}
+        <a
+          href={anchorHref(homeId)}
           className="flex items-center gap-2.5"
           aria-label="Spolu do toho — kandidatúra do N-SLSK 2026"
         >
@@ -71,36 +39,33 @@ const Header = () => {
               Kandidatúra N-SLSK · 2026
             </span>
           </span>
-        </SectionLink>
+        </a>
 
         <ul className="hidden items-center gap-1 lg:flex">
           {menuSections.map((section) => (
             <li key={section.id}>
-              <SectionLink
-                id={section.id}
-                isHome={isHome}
-                className={`${chip} ${isHome && activeId === section.id ? chipOn : chipOff}`}
+              <a
+                href={anchorHref(section.id)}
+                className={`${chip} ${activeId === section.id ? chipOn : chipOff}`}
               >
-                <span
-                  className={isHome && activeId === section.id ? 'text-brand' : 'text-brand/80'}
-                >
+                <span className={activeId === section.id ? 'text-brand' : 'text-brand/80'}>
                   {section.number}
                 </span>{' '}
                 {section.label}
-              </SectionLink>
+              </a>
             </li>
           ))}
         </ul>
 
-        {/* The Q&A page stays reachable at every width — it is the one place on
-            the site where visitors can talk back. */}
+        {/* The Q&A stays reachable at every width — it is the one place on the
+            site where visitors can talk back. */}
         <div className="flex shrink-0 items-center gap-2">
-          <Link href={qaPath} className={`${chip} ${pathname === qaPath ? chipOn : chipOff}`}>
+          <a href={anchorHref(qaAnchor)} className={`${chip} ${chipOff}`}>
             Otázky
-          </Link>
+          </a>
 
-          <Button href={isHome ? '#stretnutia' : sectionPath('stretnutia')} variant="sun" size="sm">
-            Stretnime sa
+          <Button href={anchorHref('spojme-sa')} variant="sun" size="sm">
+            Spojme sa
           </Button>
         </div>
       </nav>

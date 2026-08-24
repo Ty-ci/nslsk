@@ -1,7 +1,5 @@
-import Link from 'next/link'
-
 import { candidates, qa } from '@/app/_data/content'
-import { qaPath, sectionPath } from '@/app/_lib/navigation'
+import { anchorHref, qaAnchor } from '@/app/_lib/navigation'
 
 const linkClass = 'label text-cream/70 transition-colors hover:text-cream'
 
@@ -18,12 +16,12 @@ const Footer = () => (
         </div>
 
         <nav className="flex flex-wrap items-center gap-x-6 gap-y-3">
-          <Link href={qaPath} className={linkClass}>
+          <a href={anchorHref(qaAnchor)} className={linkClass}>
             Otázky a odpovede
-          </Link>
-          <Link href={sectionPath('stretnutia')} className={linkClass}>
+          </a>
+          <a href={anchorHref('spojme-sa')} className={linkClass}>
             Stretnime sa
-          </Link>
+          </a>
           <a href={qa.formHref} target="_blank" rel="noreferrer" className={linkClass}>
             Napísať otázku ↗
           </a>

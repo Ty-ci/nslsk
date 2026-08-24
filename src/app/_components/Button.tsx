@@ -1,14 +1,22 @@
 import Link from 'next/link'
-import type { AnchorHTMLAttributes, ReactNode } from 'react'
+import type { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from 'react'
 
 type Variant = 'sun' | 'solid' | 'light' | 'sketch' | 'quiet'
 type Size = 'sm' | 'md'
 
-type ButtonProps = {
+type Look = {
   children: ReactNode
   variant?: Variant
   size?: Size
-} & AnchorHTMLAttributes<HTMLAnchorElement>
+  className?: string
+}
+
+// One button, three elements: a route goes through the router, an in-page
+// anchor or an outside address is a plain `<a>`, and no `href` at all is a real
+// `<button>` — a modal trigger, say. `href` discriminates the two prop sets.
+type ButtonProps =
+  | (Look & Omit<AnchorHTMLAttributes<HTMLAnchorElement>, keyof Look> & { href: string })
+  | (Look & Omit<ButtonHTMLAttributes<HTMLButtonElement>, keyof Look> & { href?: never })
 
 // Square, hard-edged button that sits on a solid offset shadow and physically
 // "presses" into it on hover/active — no rounding, no blur, no lift-and-float.
@@ -39,40 +47,51 @@ const variants: Record<Variant, string> = {
     'p-0 text-ink underline decoration-brand decoration-2 underline-offset-[6px] hover:text-brand',
 }
 
-/** In-app targets (`/otazky`, `/#temy`, `#temy`) route; everything else leaves. */
-const isInternal = (href: string | undefined): href is string =>
-  href !== undefined && (href.startsWith('/') || href.startsWith('#'))
+const styles = (variant: Variant, size: Size, className: string) =>
+  `${base} ${variant === 'quiet' ? '' : sizes[size]} ${variants[variant]} ${className}`
 
-const Button = ({
-  children,
-  variant = 'solid',
-  size = 'md',
-  href,
-  className = '',
-  ...rest
-}: ButtonProps) => {
-  const classes = `${base} ${variant === 'quiet' ? '' : sizes[size]} ${variants[variant]} ${className}`
-  const label = (
-    <>
-      {children}
-      <span
-        aria-hidden="true"
-        className="transition-transform duration-100 group-hover:translate-x-1"
-      >
-        →
-      </span>
-    </>
-  )
+const Label = ({ children }: { children: ReactNode }) => (
+  <>
+    {children}
+    <span aria-hidden="true" className="transition-transform duration-100 group-hover:translate-x-1">
+      →
+    </span>
+  </>
+)
 
-  return isInternal(href) ? (
+/**
+ * Routes (`/dev`) go through the router; in-page anchors (`#temy`) deliberately
+ * do not — a plain `<a href="#id">` is resolved against the URL currently open,
+ * so it survives the page moving in the folder structure.
+ */
+const isRoute = (href: string) => href.startsWith('/')
+
+const Button = (props: ButtonProps) => {
+  // Narrowed on the object rather than after destructuring, which is what lets
+  // each branch keep its own element's attributes.
+  if (props.href === undefined) {
+    const { children, variant = 'solid', size = 'md', className = '', href, ...rest } = props
+
+    return (
+      <button type="button" className={styles(variant, size, className)} {...rest}>
+        <Label>{children}</Label>
+      </button>
+    )
+  }
+
+  const { children, variant = 'solid', size = 'md', className = '', href, ...rest } = props
+  const classes = styles(variant, size, className)
+
+  return isRoute(href) ? (
     <Link className={classes} href={href} {...rest}>
-      {label}
+      <Label>{children}</Label>
     </Link>
   ) : (
     <a className={classes} href={href} {...rest}>
-      {label}
+      <Label>{children}</Label>
     </a>
   )
 }
 
 export default Button
+export type { Size as ButtonSize, Variant as ButtonVariant }

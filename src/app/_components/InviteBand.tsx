@@ -3,6 +3,7 @@
 import Button from '@/app/_components/Button'
 import Label from '@/app/_components/Label'
 import { useSheetContent } from '@/app/_hooks/useSheetContent'
+import { anchorHref } from '@/app/_lib/navigation'
 
 // Full-bleed invitation directly under the hero — the first thing after the
 // headline, because meeting people is the point of the whole site. Once the
@@ -31,7 +32,11 @@ const InviteBand = () => {
           </p>
         </div>
 
-        <Button href="#stretnutia" variant="light" className="shrink-0 self-start md:self-auto">
+        <Button
+          href={anchorHref('spojme-sa')}
+          variant="light"
+          className="shrink-0 self-start md:self-auto"
+        >
           {nextEvent ? 'Pripojiť sa' : 'Prihlásiť sa na stretnutie'}
         </Button>
       </div>

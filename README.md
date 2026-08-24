@@ -1,7 +1,13 @@
 # nslsk
 
 A mostly static site built with **Next.js (App Router) + React + TypeScript + Tailwind CSS**: a
-one-pager whose nav anchors to its sections, plus one real route — `/otazky`, the Q&A page.
+one-pager whose nav anchors to its sections. There is no second route — the Q&A lives inside the
+„Spojme sa" section, under its own `#otazky` anchor.
+
+While the content is being written, the one-pager is parked at **`/dev`** and `/` is just the
+turning lily. Every in-page link is therefore hash-only (`#temy`, never `/#temy`), so the anchors
+follow the page when it moves back to `/` — see `anchorHref` in
+[`src/app/_lib/navigation.ts`](src/app/_lib/navigation.ts).
 
 ## Getting started
 
@@ -14,9 +20,10 @@ npm run dev      # start the dev server at http://localhost:3000
 
 ```
 src/app/
-  layout.tsx              shell: <html>, metadata, header, footer
-  page.tsx                the one-pager — maps section ids onto components
-  otazky/page.tsx         the Q&A page (title only; the body is a client component)
+  layout.tsx              shell: <html>, metadata and the design tokens
+  page.tsx                / — parked: the turning lily, nothing else
+  (pages)/dev/layout.tsx  the real shell: header, body, colophon
+  (pages)/dev/page.tsx    the one-pager — maps section ids onto components
   [...slug]/page.tsx      catch-all → redirects unknown paths to /
   api/content/route.ts    GET /api/content, the sheet-backed JSON
   _components/            shared UI
@@ -29,8 +36,9 @@ src/app/
 ```
 
 Section order and the nav menu live in [`src/app/_lib/navigation.ts`](src/app/_lib/navigation.ts);
-each id is wired to its component in [`src/app/page.tsx`](src/app/page.tsx), and the `Record` there
-makes TypeScript insist on a component for every entry. `navigation.ts` deliberately imports no
+each id is wired to its component in
+[`src/app/(pages)/dev/page.tsx`](<src/app/(pages)/dev/page.tsx>), and the `Record` there makes
+TypeScript insist on a component for every entry. `navigation.ts` deliberately imports no
 components — the header is a client component, so anything it reached would ship to the browser.
 
 ## Where the content lives
@@ -40,7 +48,7 @@ components — the header is a client component, so anything it reached would sh
   - sheet `otazky`: questions from the form plus the answers written next to them. A row is
     published only when its `Zverejniť?` checkbox is ticked, and the asker's name is printed only
     when their own consent column says it may be. `Odpoveď` is rendered as Markdown.
-  - sheet `eventy`: the meeting slots in “Stretnime sa” (`Názov`, `Forma`, `Termín`, `Popis`).
+  - sheet `eventy`: the meeting slots in „Spojme sa" (`Názov`, `Forma`, `Termín`, `Popis`).
     `Popis` is rendered as Markdown, so `[text](url)` links work.
   - In both sheets the header is the **third** row; the two rows above it are instructions.
 

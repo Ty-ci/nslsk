@@ -4,9 +4,10 @@ import { usePathname } from 'next/navigation'
 import { useEffect } from 'react'
 
 /**
- * Scrolls to the `#section` in the URL on a client-side navigation. On a full
- * page load the browser does this itself, but arriving from the Q&A page as
- * `/#temy` is a router navigation, and the hash isn't part of the route.
+ * Scrolls to the `#section` in the URL after the page mounts. The browser does
+ * this itself on a plain load, but not when the target is a block that only
+ * appears once the sheet content arrives — and not on a client-side navigation,
+ * where the hash isn't part of the route.
  */
 const HashScroll = () => {
   const pathname = usePathname()
