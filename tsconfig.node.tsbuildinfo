@@ -1,1 +1,0 @@
-{"root":["./vite.config.ts","./netlify/functions/content.mts","./netlify/lib/sheets.mts"],"version":"5.9.3"}

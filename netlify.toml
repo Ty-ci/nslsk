@@ -1,22 +1,9 @@
 [build]
   command = "npm run build"
-  publish = "dist"
+  publish = ".next"
 
-[functions]
-  directory = "netlify/functions"
-  node_bundler = "esbuild"
-
-# /api/* is the site's own read-only API (sheet-backed content). It has to come
-# before the SPA fallback below, because redirects are matched in order and the
-# catch-all would otherwise answer with index.html.
-[[redirects]]
-  from = "/api/*"
-  to = "/.netlify/functions/:splat"
-  status = 200
-
-# SPA fallback: let React Router handle client-side routes so that
-# deep links and page refreshes don't 404.
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+# The Next.js runtime for Netlify: it maps the App Router's routes, the
+# `/api/content` route handler and the static assets onto Netlify's own
+# primitives, so no redirects or functions have to be declared here.
+[[plugins]]
+  package = "@netlify/plugin-nextjs"

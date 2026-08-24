@@ -1,4 +1,4 @@
-export default {
+module.exports = {
   trailingComma: 'all',
   tabWidth: 2,
   semi: false,
@@ -6,5 +6,5 @@ export default {
   printWidth: 100,
   plugins: ['prettier-plugin-tailwindcss'],
   tailwindFunctions: ['clsx', 'cn'],
-  tailwindStylesheet: './src/index.css',
+  tailwindStylesheet: './src/app/globals.css',
 }

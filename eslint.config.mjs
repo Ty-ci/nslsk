@@ -1,33 +1,39 @@
-import { createReactConfig } from '@bratislava/eslint-config-react'
+import { createNextConfig } from '@bratislava/eslint-config-next'
 
 export default [
-  ...createReactConfig({
-    // The preset already ignores dist/**, build/**, node_modules/**, config
+  ...createNextConfig({
+    // The preset already ignores .next/**, build/**, node_modules/**, config
     // files and eslint.config.* — add project-specific paths here as needed.
     ignores: [
       '**/*.md', // don't lint Markdown as code (preset's JS rules aren't md-scoped)
       '.prettierrc.js', // config file, not part of the TS project
     ],
   }),
-  // https://github.com/bratislava/eslint-config -> better-tailwindcss settings.
-  // entryPoint points at this project's Tailwind stylesheet (Vite, not Next).
+  // https://github.com/bratislava/eslint-config/blob/main/packages/next/README.md#tailwind-css
   {
     settings: {
       'better-tailwindcss': {
-        entryPoint: 'src/index.css',
+        entryPoint: './src/app/globals.css',
         callees: ['cx', 'classnames', 'clsx', 'cn', 'twMerge', 'tw'],
       },
     },
   },
 
   // Project-specific rule overrides
-  // (carried over from the Next project; trim to taste for this repo)
   {
     rules: {
       'jsx-a11y/anchor-is-valid': 'off',
       'no-multi-spaces': 'error',
 
       'better-tailwindcss/enforce-consistent-line-wrapping': 'off',
+
+      // The two images on the site are an inline SVG mark and a Google Drive
+      // thumbnail with an onError fallback — neither gains from `next/image`.
+      '@next/next/no-img-element': 'off',
+
+      // The site is Slovak-only and has no i18n layer: the copy that isn't in
+      // `_data/content.ts` is written straight into the markup, on purpose.
+      'i18next/no-literal-string': 'off',
 
       // Good rules that tend to need cleanup work — kept as warnings
       '@typescript-eslint/no-explicit-any': 'off',

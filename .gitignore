@@ -9,12 +9,18 @@ yarn-error.log*
 pnpm-debug.log*
 
 node_modules
-dist
-dist-ssr
 *.local
 
-# Netlify CLI working directory (functions build, local state)
+# next.js
+/.next/
+/out/
+next-env.d.ts
+
+# Netlify CLI working directory (build output, local state)
 .netlify
+
+# typescript
+*.tsbuildinfo
 
 # Editor directories and files
 .vscode/*
