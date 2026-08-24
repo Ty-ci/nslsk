@@ -34,7 +34,7 @@ const Modal = ({ isOpen, onClose, title, children }: ModalProps) => {
   // one-pager is long enough that it would scroll away underneath.
   useEffect(() => {
     if (!isOpen) {
-      return
+      return undefined
     }
 
     const { overflow } = document.body.style
@@ -46,6 +46,10 @@ const Modal = ({ isOpen, onClose, title, children }: ModalProps) => {
   }, [isOpen])
 
   return (
+    // A modal `<dialog>` is an interactive element that the browser already
+    // dismisses on Escape, so the click below is a second affordance, not the
+    // only one — which is what these two rules exist to catch.
+    // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions
     <dialog
       ref={dialogRef}
       aria-labelledby={titleId}

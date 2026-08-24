@@ -53,7 +53,10 @@ const styles = (variant: Variant, size: Size, className: string) =>
 const Label = ({ children }: { children: ReactNode }) => (
   <>
     {children}
-    <span aria-hidden="true" className="transition-transform duration-100 group-hover:translate-x-1">
+    <span
+      aria-hidden="true"
+      className="transition-transform duration-100 group-hover:translate-x-1"
+    >
       →
     </span>
   </>
@@ -66,12 +69,17 @@ const Label = ({ children }: { children: ReactNode }) => (
  */
 const isRoute = (href: string) => href.startsWith('/')
 
-const Button = (props: ButtonProps) => {
-  // Narrowed on the object rather than after destructuring, which is what lets
-  // each branch keep its own element's attributes.
-  if (props.href === undefined) {
-    const { children, variant = 'solid', size = 'md', className = '', href, ...rest } = props
+// Narrowed here rather than inside the component, so each branch can destructure
+// its own element's attributes off an already-picked half of the union.
+const isLink = (props: ButtonProps): props is Extract<ButtonProps, { href: string }> =>
+  props.href !== undefined
 
+const Button = (props: ButtonProps) => {
+  if (!isLink(props)) {
+    const { children, variant = 'solid', size = 'md', className = '', ...rest } = props
+
+    // `href` isn't destructured away: on this half of the union it is typed
+    // `never`, so there is nothing to strip out of `rest`.
     return (
       <button type="button" className={styles(variant, size, className)} {...rest}>
         <Label>{children}</Label>

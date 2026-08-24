@@ -313,13 +313,12 @@ const SpojmeSa = () => {
       <Section className="border-t-2 border-ink bg-ink/90 text-cream" py="py-14 md:py-16">
         <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
           <div className="flex flex-col gap-1">
-
-          <p className="max-w-xl font-heading text-3xl font-bold uppercase md:text-4xl">
-            Ostala v tebe otázka?
-          </p>
-          <p className="max-w-xl font-heading text-3xl font-bold uppercase md:text-4xl text-brand">
-            Napíš nám ju!
-          </p>
+            <p className="max-w-xl font-heading text-3xl font-bold uppercase md:text-4xl">
+              Ostala v tebe otázka?
+            </p>
+            <p className="max-w-xl font-heading text-3xl font-bold text-brand uppercase md:text-4xl">
+              Napíš nám ju!
+            </p>
           </div>
           <AskButton variant="light" className="shrink-0 self-start md:self-auto" />
         </div>
