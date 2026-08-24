@@ -1,4 +1,5 @@
 import type { AnchorHTMLAttributes, ReactNode } from 'react'
+import { Link } from 'react-router-dom'
 
 type Variant = 'sun' | 'solid' | 'light' | 'sketch' | 'quiet'
 type Size = 'sm' | 'md'
@@ -7,6 +8,8 @@ type ButtonProps = {
   children: ReactNode
   variant?: Variant
   size?: Size
+  /** In-app target. Routes through React Router; `href` stays for outside links. */
+  to?: string
 } & AnchorHTMLAttributes<HTMLAnchorElement>
 
 // Square, hard-edged button that sits on a solid offset shadow and physically
@@ -15,8 +18,7 @@ const base =
   'group inline-flex items-center justify-center gap-2 font-mono text-sm font-bold tracking-wider uppercase transition-[transform,box-shadow,color] duration-100'
 
 // The pressing motion, shared by every variant that has a shadow to press into.
-const press =
-  'border-2 hover:translate-0.5 active:translate-1'
+const press = 'border-2 hover:translate-0.5 active:translate-1'
 
 const sizes: Record<Size, string> = {
   sm: 'px-4 py-2 text-xs',
@@ -43,21 +45,32 @@ const Button = ({
   children,
   variant = 'solid',
   size = 'md',
+  to,
   className = '',
   ...rest
-}: ButtonProps) => (
-  <a
-    className={`${base} ${variant === 'quiet' ? '' : sizes[size]} ${variants[variant]} ${className}`}
-    {...rest}
-  >
-    {children}
-    <span
-      aria-hidden="true"
-      className="transition-transform duration-100 group-hover:translate-x-1"
-    >
-      →
-    </span>
-  </a>
-)
+}: ButtonProps) => {
+  const classes = `${base} ${variant === 'quiet' ? '' : sizes[size]} ${variants[variant]} ${className}`
+  const label = (
+    <>
+      {children}
+      <span
+        aria-hidden="true"
+        className="transition-transform duration-100 group-hover:translate-x-1"
+      >
+        →
+      </span>
+    </>
+  )
+
+  return to ? (
+    <Link className={classes} to={to} {...rest}>
+      {label}
+    </Link>
+  ) : (
+    <a className={classes} {...rest}>
+      {label}
+    </a>
+  )
+}
 
 export default Button

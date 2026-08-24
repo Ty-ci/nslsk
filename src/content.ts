@@ -173,24 +173,9 @@ export const milestones: Milestone[] = [
   { horizon: '3 roky', note: '2029', tbd: true },
 ]
 
-export type Meeting = {
-  date: string
-  time: string
-  /** Forma stretnutia — online call alebo miesto. */
-  form: string
-  href?: string
-}
-
-// Stretnutia s členmi. Ďalšie termíny sa budú dopĺňať priebežne.
-export const meetings: Meeting[] = []
-
-/**
- * Najbližší termín, alebo `undefined`, kým žiadny nie je vypísaný.
- * `meetings` je zatiaľ prázdne — kandidáti termíny doplnia, dovtedy stránka
- * ukazuje pozvánku namiesto dátumu.
- */
-// eslint-disable-next-line sonarjs/no-empty-collection
-export const nextMeeting: Meeting | undefined = meetings[0]
+// Termíny stretnutí (sekcia „Stretnime sa") sa už netextujú tu — kandidáti ich
+// dopĺňajú do listu „eventy" v tabuľke k dotazníku a stránka ich číta priebežne.
+// Pozri `src/sheetContent.ts` a `netlify/lib/sheets.mts`.
 
 export const contact = {
   intro:
@@ -207,3 +192,15 @@ export const contact = {
 
 /** Odkaz na dokument s kompletným programom — doplniť po dokončení. */
 export const programDocHref: string | undefined = undefined
+
+// Otázky a odpovede. Otázky prichádzajú cez dotazník, odpovede píšeme do
+// tabuľky a stránka ich zverejní, keď v riadku zaškrtneme „Zverejniť?".
+export const qa = {
+  formHref:
+    'https://docs.google.com/forms/d/e/1FAIpQLSe7S5Or67qtApl25sZHoVvC1nO9BtIrim8gD9zcxCaw6joyDQ/viewform',
+  intro:
+    'Ak vám v našom programe niečo nie je jasné, alebo s niečím nesúhlasíte, napíšte nám. Otázky zbierame cez krátky dotazník a odpovede zverejňujeme tu — aby odpoveď dostal každý, koho to zaujíma, nie iba ten, kto sa spýtal.',
+  /** Poznámka pod dotazníkom — čo sa s otázkou stane. */
+  formNote:
+    'Otázku môžete poslať aj anonymne. Zverejňujeme len otázky, ku ktorým máme váš súhlas, a meno pripíšeme iba vtedy, keď ste v dotazníku povedali, že môžeme.',
+}

@@ -3,7 +3,6 @@ import Field from '../components/Field.tsx'
 import Label from '../components/Label.tsx'
 import Photo from '../components/Photo.tsx'
 import Section from '../components/Section.tsx'
-import Stamp from '../components/Stamp.tsx'
 import { candidates } from '../content.ts'
 import { inkAt, offsetStatic } from '../theme.ts'
 
@@ -15,15 +14,6 @@ const Hero = () => (
     <div className="grid items-start gap-14 md:grid-cols-[1fr_0.8fr] md:gap-16">
       {/* The ballot itself: the poster's title block, filled in like a form. */}
       <div className={`relative bg-cream px-7 py-8 md:px-9 md:py-10 ${offsetStatic}`}>
-        {/* Approval stamp struck across the corner of the ballot. */}
-        <div className="absolute -top-5 -right-4 z-10">
-          <Stamp className="rotate-12 border-brand text-brand">
-            Snem
-            <br />
-            <span className="text-lg">2026</span>
-          </Stamp>
-        </div>
-
         <Label className="text-brand">
           Kandidatúra do
           <br />
