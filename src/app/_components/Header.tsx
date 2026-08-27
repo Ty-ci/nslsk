@@ -23,7 +23,7 @@ const Header = () => {
     .filter((section) => section.id !== homeId && section.id !== 'spojme-sa')
 
   return (
-    <header className="sticky top-0 z-20 border-b-2 border-ink bg-sand backdrop-blur-sm">
+    <header className="border-b-2 border-ink bg-sand backdrop-blur-sm">
       <nav className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-4 px-6 py-3 lg:flex-row lg:items-center">
         <a
           href={anchorHref(homeId)}
