@@ -23,8 +23,8 @@ const Header = () => {
     .filter((section) => section.id !== homeId && section.id !== 'spojme-sa')
 
   return (
-    <header className="sticky top-0 z-20 border-b-2 border-ink bg-cream/95 backdrop-blur-sm">
-      <nav className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-6 py-3">
+    <header className="sticky top-0 z-20 border-b-2 border-ink bg-sand backdrop-blur-sm">
+      <nav className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-4 px-6 py-3 lg:flex-row lg:items-center">
         <a
           href={anchorHref(homeId)}
           className="flex items-center gap-2.5"
@@ -33,7 +33,7 @@ const Header = () => {
           <img src="/favicon.svg" alt="" aria-hidden="true" className="w-7 shrink-0" />
           <span className="flex flex-col leading-none">
             <span className="font-heading text-[1.5rem] font-bold tracking-wide text-ink uppercase">
-              Spolu do toho
+              Spolu do toho!
             </span>
           </span>
         </a>

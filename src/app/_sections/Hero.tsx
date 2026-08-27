@@ -9,21 +9,16 @@ import { inkAt, offsetStatic } from '@/app/_lib/theme'
 // Alternating tilts so the four portraits look pasted up by hand, not laid out.
 const TILTS = [-2.2, 1.6, 1.9, -1.4]
 
-const HeroPhotos = () => {}
-
 const Hero = () => (
-  <Section py="pt-14 pb-20 md:pt-16 md:pb-24">
-    <div className="flex flex-col justify-between gap-14 md:gap-16 lg:flex-row lg:*:max-w-[45%]">
+  <Section py="py-6 lg:py-8">
+    <div className="flex flex-col justify-between gap-8 md:gap-16 lg:flex-row lg:items-center lg:*:max-w-[45%] lg:*:grow">
       {/* The ballot itself: the poster's title block, filled in like a form. */}
-      <div className={`relative bg-cream px-7 py-8 md:px-9 md:py-10 ${offsetStatic}`}>
-        <h1 className="mt-7 font-display text-6xl leading-[0.85] tracking-tight uppercase md:text-7xl">
+      <div className={`relative bg-cream-light px-7 py-8 md:px-9 md:py-10 ${offsetStatic}`}>
+        <h1 className="font-display text-6xl leading-[0.85] tracking-tight uppercase md:text-7xl">
           <span className="block text-ink">Spolu</span>
           {/* Misregistered second pass — the red plate shifted off the black. */}
           <span className="relative mt-1 inline-block">
-            <span aria-hidden="true" className="absolute inset-0 translate-1 text-brand">
-              do toho
-            </span>
-            <span className="relative text-ink">do toho</span>
+            <span className="relative text-ink">do toho!</span>
           </span>
         </h1>
 
@@ -46,7 +41,7 @@ const Hero = () => (
           ))}
         </dl>
 
-        <div className="mt-9 flex flex-wrap gap-4">
+        <div className="mt-6 flex flex-wrap gap-2">
           <Button variant="sun" href={anchorHref('otazky')} className="font-bold tracking-wider">
             Pýtajte sa
           </Button>
@@ -58,7 +53,7 @@ const Hero = () => (
       </div>
 
       {/* Four portraits pasted onto the facing sheet, captioned like plates. */}
-      <ul className="grid grid-cols-4 gap-x-8 gap-y-9 sm:gap-x-10 md:mt-4 md:grid-cols-2">
+      <ul className="grid grid-cols-2 gap-x-8 gap-y-9 sm:gap-x-10 md:mt-4">
         {candidates.map((candidate, i) => (
           <li key={candidate.name}>
             <Photo

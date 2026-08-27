@@ -28,7 +28,7 @@ const press = 'border-2 hover:translate-0.5 active:translate-1'
 
 const sizes: Record<Size, string> = {
   sm: 'px-4 py-2 text-xs',
-  md: 'px-6 py-3',
+  md: 'px-5 py-3',
 }
 
 // Shadow/border colour is baked per-variant so buttons read correctly on both

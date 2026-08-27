@@ -11,6 +11,7 @@
     "start": "next start",
     "lint": "eslint src",
     "lint:fix": "eslint src --fix",
+    "lint:quiet": "eslint src --quiet",
     "prettier": "prettier --write .",
     "typecheck": "tsc --noEmit"
   },

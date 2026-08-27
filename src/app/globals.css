@@ -16,6 +16,7 @@ layer(base);
   /* Ink + paper stock. */
   --color-ink: #1b1a16;
   --color-cream: #f4ecdd;
+  --color-cream-light: #fffaed;
   --color-sand: #e7d9c3;
 
   /* The single spot colour — used sparingly, like a second riso pass. */

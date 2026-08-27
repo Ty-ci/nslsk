@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 // routes that want it (see `(pages)/dev/layout.tsx`) and `/` is parked as the
 // turning lily.
 const RootLayout = ({ children }: { children: ReactNode }) => (
-  <html lang="sk" className="scroll-smooth">
+  <html lang="sk">
     <body className="min-h-screen">{children}</body>
   </html>
 )

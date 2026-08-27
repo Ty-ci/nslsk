@@ -18,7 +18,9 @@ const HashScroll = () => {
       return
     }
 
-    document.getElementById(hash.slice(1))?.scrollIntoView({ behavior: 'smooth' })
+    // No `behavior`, so this jumps: the nav anchors land instantly too, and a
+    // deep link arriving late shouldn't animate past the page on its own.
+    document.getElementById(hash.slice(1))?.scrollIntoView()
   }, [pathname])
 
   return null

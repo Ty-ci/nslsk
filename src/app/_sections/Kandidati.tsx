@@ -10,8 +10,7 @@ const TILTS = [-1.8, 1.5, -1.3, 2]
 const Kandidati = () => (
   <Section>
     <SectionIntro
-      label="Kandidáti"
-      title="O nás"
+      title="Kandidáti"
       // lead="Ku každému z nás nájdete jeho témy — a celý kandidačný formulár tak, ako ho videl snem. Nič skrátené, nič preformulované."
     />
 
@@ -24,7 +23,7 @@ const Kandidati = () => (
         return (
           <article
             key={candidate.name}
-            className="grid gap-8 border-t-2 border-ink py-12 first:border-t-0 first:pt-0 sm:grid-cols-[10rem_1fr] sm:gap-12 md:grid-cols-[12rem_1fr]"
+            className="grid gap-8 border-ink py-12 first:border-t-0 first:pt-0 sm:grid-cols-[10rem_1fr] sm:gap-12 md:grid-cols-[12rem_1fr]"
           >
             <Photo
               photoId={candidate.photoId}
@@ -32,6 +31,7 @@ const Kandidati = () => (
               initials={candidate.initials}
               ink={ink}
               tilt={TILTS[i % TILTS.length]}
+              className="max-lg:max-w-[250px]"
             />
 
             <div>

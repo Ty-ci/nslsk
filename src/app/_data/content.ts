@@ -209,7 +209,7 @@ export const qa = {
   formHref:
     'https://docs.google.com/forms/d/e/1FAIpQLSe7S5Or67qtApl25sZHoVvC1nO9BtIrim8gD9zcxCaw6joyDQ/viewform',
   intro:
-    'Ak vám v našom programe niečo nie je jasné, alebo s niečím nesúhlasíte, napíšte nám. Otázky zbierame cez krátky dotazník a odpovede zverejňujeme tu — aby odpoveď dostal každý, koho to zaujíma, nie iba ten, kto sa spýtal.',
+    'Ak vám v našom programe niečo nie je jasné, alebo s niečím nesúhlasíte, napíšte nám. Otázky zbierame cez krátky dotazník a odpovede zverejňujeme tu.',
   /** Poznámka pod dotazníkom — čo sa s otázkou stane. */
   formNote:
     'Otázku môžete poslať aj anonymne. Zverejňujeme len otázky, ku ktorým máme váš súhlas, a meno pripíšeme iba vtedy, keď ste v dotazníku povedali, že môžeme.',

@@ -14,80 +14,48 @@ const topicLinks = candidates.flatMap((candidate) =>
 
 const Program = () => (
   <Section className="border-t-2 border-ink">
-    <div className="grid gap-14 md:grid-cols-[1fr_0.9fr] md:gap-20">
-      <div>
-        <SectionIntro
-          label="Hlavný program"
-          title={
-            <>
-              Celý program
-              <br />
-              na jednom mieste
-            </>
-          }
-          lead="TODO Text."
-        />
-      </div>
+    <div className="flex flex-col gap-6 lg:gap-8">
+      <SectionIntro
+        title={<>Náš program</>}
+        lead="Program za jednotlivé oblasti, s ktorým do Náčelníctva prichádzame, si môžete pozrieť nižšie."
+      />
 
-      {/* Index of the individual topic documents — the working parts of the
-          program, readable already today. */}
-      <div className={`self-start bg-cream p-6 ${offsetStatic}`}>
-        <div className="flex items-center justify-between gap-4 border-b-2 border-ink pb-3">
-          <h3 className="font-heading text-2xl leading-none font-bold text-ink uppercase">
-            Podkladové dokumenty
-          </h3>
-          <span className="shrink-0 label text-ink/45">{topicLinks.length} ks</span>
-        </div>
+      <div className="flex flex-col gap-6 lg:flex-row">
+        <div className={`self-start bg-cream-light p-6 ${offsetStatic}`}>
+          <div className="flex items-center justify-between gap-4 border-b-2 border-ink pb-3">
+            <h3 className="font-heading text-2xl leading-none font-bold text-ink uppercase">
+              Programové témy
+            </h3>
+          </div>
 
-        <ul className="mt-2 divide-y-2 divide-dashed divide-ink/20">
-          {topicLinks.map((topic) => (
-            <li key={topic.href}>
-              <a
-                href={topic.href}
-                target="_blank"
-                rel="noreferrer"
-                className="group flex items-baseline gap-3 py-3.5 transition-colors hover:text-brand"
-              >
-                <span className="font-heading text-lg leading-none font-bold uppercase">
-                  {topic.title}
-                </span>
-                <span aria-hidden="true" className="leader text-ink" />
-                <span className="shrink-0 label text-ink/45 group-hover:text-brand/70">
-                  {topic.candidate}
-                </span>
-                <span
-                  aria-hidden="true"
-                  className="shrink-0 font-mono text-xs transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+          <ul className="mt-2 divide-y-2 divide-dashed divide-ink/10">
+            {topicLinks.map((topic) => (
+              <li key={topic.href}>
+                <a
+                  href={topic.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="group flex items-baseline justify-between gap-3 py-3.5 text-brand-dark hover:text-brand"
                 >
-                  ↗
-                </span>
-              </a>
+                  <span className="font-heading text-lg leading-none font-bold uppercase">
+                    {topic.title}
+                  </span>
+                  <span className="shrink-0 label text-ink/50 group-hover:text-brand/70">
+                    {topic.candidate}
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <ul className="flex flex-col gap-3">
+          {candidates.map((candidate) => (
+            <li key={candidate.name}>
+              <FormLink href={candidate.formHref} name={candidate.name} className="w-full!" />
             </li>
           ))}
         </ul>
       </div>
-    </div>
-
-    {/* All four candidacy forms in one place — the primary source documents,
-        so they get their own strip rather than living only next to a photo. */}
-    <div className="mt-20">
-      <div className="flex items-baseline gap-4">
-        <span className="label text-ink">Kandidačné formuláre</span>
-        <span aria-hidden="true" className="leader text-ink" />
-      </div>
-
-      <ul className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-        {candidates.map((candidate) => (
-          <li key={candidate.name}>
-            <FormLink
-              href={candidate.formHref}
-              name={candidate.name}
-              subtitle={candidate.name}
-              className="h-full"
-            />
-          </li>
-        ))}
-      </ul>
     </div>
   </Section>
 )

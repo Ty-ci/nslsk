@@ -16,7 +16,7 @@ const FormLink = ({ href, name, subtitle, className = '' }: FormLinkProps) => (
     href={href}
     target="_blank"
     rel="noreferrer"
-    className={`group flex items-center gap-3 border-2 border-ink bg-cream px-4 py-3 shadow-[4px_4px_0_0_var(--color-ink)] transition-[transform,box-shadow,background-color] duration-100 hover:translate-0.5 hover:bg-brand/10 hover:shadow-[2px_2px_0_0_var(--color-ink)] ${className}`}
+    className={`group flex w-fit items-center gap-3 border-2 border-ink bg-cream-light px-4 py-3 shadow-[4px_4px_0_0_var(--color-ink)] transition-[transform,box-shadow,background-color] duration-100 hover:translate-0.5 hover:bg-brand/10 hover:shadow-[2px_2px_0_0_var(--color-ink)] ${className}`}
   >
     {/* Paperclip: an attachment, drawn rather than emoji'd. */}
     <svg
@@ -32,20 +32,10 @@ const FormLink = ({ href, name, subtitle, className = '' }: FormLinkProps) => (
     </svg>
 
     <span className="flex-1">
-      <span className="block label text-ink">
-        Kandidačný formulár
-        <span className="sr-only"> — {name}</span>
-      </span>
-      <span className="mt-1 block font-mono text-[11px] text-ink/55 uppercase">
-        {subtitle ?? 'celý dokument · PDF'}
-      </span>
-    </span>
-
-    <span
-      aria-hidden="true"
-      className="shrink-0 font-mono text-xs text-brand transition-transform duration-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-    >
-      ↗
+      <span className="block label text-ink">Kandidačný formulár - {name}</span>
+      {subtitle ? (
+        <span className="mt-1 block font-mono text-[11px] text-ink/55 uppercase">{subtitle}</span>
+      ) : null}
     </span>
   </a>
 )

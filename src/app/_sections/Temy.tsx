@@ -6,10 +6,8 @@ import { inkAt } from '@/app/_lib/theme'
 const Temy = () => (
   <Section className="border-t-2 border-ink band-sand">
     <SectionIntro
-      label="Spoločné témy"
-      title="Za čím si stojíme ako tím"
-      note={`${sharedTopics.length} bodov`}
-      lead="Osem vecí, na ktorých sme sa dohodli všetci štyria. Nie sú to samostatné projekty — je to spôsob, akým chceme v Náčelníctve pracovať."
+      title="Naše spoločné princípy"
+      lead="Osem vecí, na ktorých sme sa dohodli všetci štyria. Nie sú to samostatné projekty, je to spôsob, akým chceme v Náčelníctve pracovať."
     />
 
     {/* A numbered register across two columns: the entry number set large in
@@ -23,7 +21,7 @@ const Temy = () => (
             key={topic.title}
             className="border-t-2 border-ink py-8 first:border-t-0 first:pt-0 md:nth-2:border-t-0 md:nth-2:pt-0"
           >
-            <div className="flex items-baseline gap-4">
+            <div className="flex flex-col items-baseline gap-4 lg:flex-row">
               <span className={`shrink-0 font-display text-3xl leading-[0.8] ${ink.text}`}>
                 {String(i + 1).padStart(2, '0')}
               </span>
@@ -32,14 +30,14 @@ const Temy = () => (
               </h3>
             </div>
 
-            <p className="mt-4 max-w-xl pl-12 text-ink/80">{topic.body}</p>
+            <p className="mt-4 max-w-xl text-ink/80 lg:pl-12">{topic.body}</p>
 
             {topic.link && (
               <a
                 href={topic.link.href}
                 target="_blank"
                 rel="noreferrer"
-                className={`mt-3 ml-12 inline-block label hover:underline ${ink.text}`}
+                className={`mt-3 inline-block label hover:underline lg:ml-12 ${ink.text}`}
               >
                 {topic.link.label} ↗
               </a>
