@@ -53,12 +53,12 @@ const styles = (variant: Variant, size: Size, className: string) =>
 const Label = ({ children }: { children: ReactNode }) => (
   <>
     {children}
-    <span
+    {/* <span
       aria-hidden="true"
       className="transition-transform duration-100 group-hover:translate-x-1"
     >
       →
-    </span>
+    </span> */}
   </>
 )
 

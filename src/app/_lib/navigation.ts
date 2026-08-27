@@ -11,7 +11,7 @@ export const sections = [
   { id: 'kandidati', label: 'Kandidáti' },
   { id: 'temy', label: 'Spoločné témy' },
   { id: 'program', label: 'Program' },
-  { id: 'spojme-sa', label: 'Spojme sa' },
+  { id: 'spojme-sa', label: 'Stretnime sa' },
 ] as const
 
 export type NavSection = (typeof sections)[number]
@@ -23,7 +23,7 @@ export type SectionId = NavSection['id']
 export const sectionIds: SectionId[] = sections.map((section) => section.id)
 
 /**
- * The Q&A block inside „Spojme sa". It has an anchor of its own because it used
+ * The Q&A block inside „Stretnime sa". It has an anchor of its own because it used
  * to be a page (`/otazky`) and is the half of that section people link to.
  */
 export const qaAnchor = 'otazky'

@@ -19,20 +19,24 @@ export type CandidateTopic = {
 export type Candidate = {
   /** Skautská prezývka — kandidáti vystupujú pod ňou. */
   name: string
+  fullName: string
   initials: string
   /** ID súboru fotky na Google Drive. */
   photoId: string
   /** Kandidačný formulár (PDF na Google Drive). */
   formHref: string
+  position: string
   topics: CandidateTopic[]
 }
 
 export const candidates: Candidate[] = [
   {
     name: 'Funko',
+    fullName: 'Filip Košťál',
     initials: 'F',
     photoId: '16yxMPASGVYHuDuVmm3ThvbNuosrfkrDD',
     formHref: 'https://drive.google.com/file/d/1x8DrW7r1LIvxVJ9FkdSD-IhQ20Y-JPMB/view',
+    position: 'Náčelník',
     topics: [
       {
         title: 'Stratégia',
@@ -54,9 +58,11 @@ export const candidates: Candidate[] = [
   },
   {
     name: 'Green',
+    fullName: 'Miroslav Hrivňák',
     initials: 'G',
     photoId: '1fwfJpUWjqJJMScLZLCuoFOnTLOmsI8o0',
     formHref: 'https://drive.google.com/file/d/11flWPAmeNBmdgGYUfIZ5HPxNSCuJlcd2/view',
+    position: 'Člen Náčelníctva',
     topics: [
       {
         title: 'Vzdelávanie a výchova',
@@ -78,9 +84,11 @@ export const candidates: Candidate[] = [
   },
   {
     name: 'Zved',
+    fullName: 'Patrik Kralovič',
     initials: 'Z',
     photoId: '19_IvUfZ5L9cgwvfIYnATnV-uaitDkEn_',
     formHref: 'https://drive.google.com/file/d/1Y9I8mwHqxT4kDT8Bm6NQVGtysZFmi3en/view',
+    position: 'Člen Náčelníctva',
     topics: [
       {
         title: 'Rast a podpora dospelých',
@@ -94,9 +102,11 @@ export const candidates: Candidate[] = [
   },
   {
     name: 'Žubro',
+    fullName: 'Matej Hodas',
     initials: 'Ž',
     photoId: '1SYS5szJQYXgZKZxIqBkRw6INqO92YG1q',
     formHref: 'https://drive.google.com/file/d/1txrNWSUpeUwZzWUlDLEWeL44VK9JZog0/view',
+    position: 'Člen Náčelníctva',
     topics: [
       {
         title: 'Financie a fundraising',

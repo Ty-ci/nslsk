@@ -11,9 +11,8 @@ const Kandidati = () => (
   <Section>
     <SectionIntro
       label="Kandidáti"
-      title="Štyria ľudia, jeden tím"
-      note="01 / 04 – 04 / 04"
-      lead="Ku každému z nás nájdete jeho témy — a celý kandidačný formulár tak, ako ho videl snem. Nič skrátené, nič preformulované."
+      title="O nás"
+      // lead="Ku každému z nás nájdete jeho témy — a celý kandidačný formulár tak, ako ho videl snem. Nič skrátené, nič preformulované."
     />
 
     {/* One numbered entry per candidate: portrait pasted into the margin, the
@@ -27,16 +26,13 @@ const Kandidati = () => (
             key={candidate.name}
             className="grid gap-8 border-t-2 border-ink py-12 first:border-t-0 first:pt-0 sm:grid-cols-[10rem_1fr] sm:gap-12 md:grid-cols-[12rem_1fr]"
           >
-            <div>
-              <Photo
-                photoId={candidate.photoId}
-                name={candidate.name}
-                initials={candidate.initials}
-                ink={ink}
-                tilt={TILTS[i % TILTS.length]}
-              />
-              <FormLink href={candidate.formHref} name={candidate.name} className="mt-8" />
-            </div>
+            <Photo
+              photoId={candidate.photoId}
+              name={candidate.name}
+              initials={candidate.initials}
+              ink={ink}
+              tilt={TILTS[i % TILTS.length]}
+            />
 
             <div>
               <h3 className="mt-2 font-display text-5xl leading-none text-ink uppercase md:text-6xl">
@@ -65,6 +61,7 @@ const Kandidati = () => (
                   </div>
                 ))}
               </dl>
+              <FormLink href={candidate.formHref} name={candidate.name} className="mt-8" />
             </div>
           </article>
         )

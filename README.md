@@ -2,7 +2,7 @@
 
 A mostly static site built with **Next.js (App Router) + React + TypeScript + Tailwind CSS**: a
 one-pager whose nav anchors to its sections. There is no second route — the Q&A lives inside the
-„Spojme sa" section, under its own `#otazky` anchor.
+„Stretnime sa" section, under its own `#otazky` anchor.
 
 While the content is being written, the one-pager is parked at **`/dev`** and `/` is just the
 turning lily. Every in-page link is therefore hash-only (`#temy`, never `/#temy`), so the anchors
@@ -48,7 +48,7 @@ components — the header is a client component, so anything it reached would sh
   - sheet `otazky`: questions from the form plus the answers written next to them. A row is
     published only when its `Zverejniť?` checkbox is ticked, and the asker's name is printed only
     when their own consent column says it may be. `Odpoveď` is rendered as Markdown.
-  - sheet `eventy`: the meeting slots in „Spojme sa" (`Názov`, `Forma`, `Termín`, `Popis`).
+  - sheet `eventy`: the meeting slots in „Stretnime sa" (`Názov`, `Forma`, `Termín`, `Popis`).
     `Popis` is rendered as Markdown, so `[text](url)` links work.
   - In both sheets the header is the **third** row; the two rows above it are instructions.
 

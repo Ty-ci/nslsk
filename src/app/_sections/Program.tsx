@@ -1,9 +1,7 @@
-import Button from '@/app/_components/Button'
 import FormLink from '@/app/_components/FormLink'
 import Section from '@/app/_components/Section'
 import SectionIntro from '@/app/_components/SectionIntro'
-import Tbd from '@/app/_components/Tbd'
-import { candidates, programDocHref } from '@/app/_data/content'
+import { candidates } from '@/app/_data/content'
 import { offsetStatic } from '@/app/_lib/theme'
 
 // Every candidate's own topic docs, flattened — the program is the sum of them
@@ -27,18 +25,8 @@ const Program = () => (
               na jednom mieste
             </>
           }
-          lead="Spoločné témy vyššie sú výber. Ak vás zaujíma, ako presne to chceme urobiť — s odôvodnením, postupom a rizikami — prečítajte si kompletný dokument."
+          lead="TODO Text."
         />
-
-        <div className="mt-9">
-          {programDocHref ? (
-            <Button href={programDocHref} target="_blank" rel="noreferrer" variant="sun">
-              Kompletný program
-            </Button>
-          ) : (
-            <Tbd className="max-w-sm">odkaz na dokument s kompletným programom</Tbd>
-          )}
-        </div>
       </div>
 
       {/* Index of the individual topic documents — the working parts of the
@@ -82,16 +70,11 @@ const Program = () => (
 
     {/* All four candidacy forms in one place — the primary source documents,
         so they get their own strip rather than living only next to a photo. */}
-    <div className="mt-20 border-t-2 border-ink pt-8">
+    <div className="mt-20">
       <div className="flex items-baseline gap-4">
-        <span className="label text-brand">Kandidačné formuláre</span>
+        <span className="label text-ink">Kandidačné formuláre</span>
         <span aria-hidden="true" className="leader text-ink" />
-        <span className="shrink-0 label text-ink/40">Prílohy 01 – 04</span>
       </div>
-
-      <p className="mt-4 max-w-xl text-lg text-ink/75">
-        Úplné znenie toho, čo sme podali na snem — motivácia, skúsenosti aj plány, každý za seba.
-      </p>
 
       <ul className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {candidates.map((candidate) => (

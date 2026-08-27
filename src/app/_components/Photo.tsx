@@ -36,7 +36,7 @@ const Photo = ({
 
   return (
     <div
-      className={`relative aspect-4/5 shrink-0 overflow-hidden border-2 border-ink shadow-[6px_6px_0_0_var(--color-ink)] transition-transform duration-150 hover:rotate-0 ${ink.solid} ${className}`}
+      className={`relative aspect-4/5 shrink-0 overflow-hidden border-2 border-ink shadow-[6px_6px_0_0_var(--color-ink)] transition-transform duration-150 ${ink.solid} ${className}`}
       style={{ rotate: `${tilt}deg` }}
     >
       {failed ? (

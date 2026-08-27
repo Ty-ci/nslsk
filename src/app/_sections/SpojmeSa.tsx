@@ -114,7 +114,7 @@ const SpojmeSa = () => {
           width, the biggest headline, the most air. Everything else leads here. */}
       <Section className="border-t-4 border-brand" py="py-24 md:py-36">
         <div className="max-w-3xl">
-          <Label className="text-brand">Spojme sa</Label>
+          <Label className="text-brand">Stretnime sa</Label>
           <h2 className="mt-6 font-display text-6xl leading-[0.9] tracking-tight text-ink uppercase md:text-8xl">
             Radi vás stretneme 🏕️
           </h2>
