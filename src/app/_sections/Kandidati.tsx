@@ -16,36 +16,41 @@ const Kandidati = () => (
 
     {/* One numbered entry per candidate: portrait pasted into the margin, the
         record running beside it, a heavy rule between entries. */}
-    <div className="mt-14">
+    <div className="mt-16 flex flex-col gap-14 lg:gap-16">
       {candidates.map((candidate, i) => {
         const ink = inkAt(i)
 
         return (
-          <article
-            key={candidate.name}
-            className="grid gap-8 border-ink py-12 first:border-t-0 first:pt-0 sm:grid-cols-[10rem_1fr] sm:gap-12 md:grid-cols-[12rem_1fr]"
-          >
-            <Photo
-              photoId={candidate.photoId}
-              name={candidate.name}
-              initials={candidate.initials}
-              ink={ink}
-              tilt={TILTS[i % TILTS.length]}
-              className="max-lg:max-w-[250px]"
-            />
+          <article key={candidate.name} className="flex flex-col gap-4 lg:gap-8">
+            <div className="flex flex-col gap-6 lg:flex-row">
+              <Photo
+                photoId={candidate.photoId}
+                name={candidate.name}
+                initials={candidate.initials}
+                ink={ink}
+                tilt={TILTS[i % TILTS.length]}
+                className="w-[250px]"
+              />
+              <div className="flex flex-col gap-4 lg:gap-6">
+                <h3 className="font-display text-6xl leading-none text-ink uppercase">
+                  {candidate.name}
+                </h3>
+                {candidate.aboutMe ? (
+                  <p className="border-2 border-ink bg-cream-light p-3 text-ink shadow-[4px_4px_0_0_var(--color-ink)]">
+                    {candidate.aboutMe}
+                  </p>
+                ) : null}
+              </div>
+            </div>
 
             <div>
-              <h3 className="mt-2 font-display text-5xl leading-none text-ink uppercase md:text-6xl">
-                {candidate.name}
-              </h3>
-
-              <dl className="mt-6 space-y-6">
+              <dl className="mt-6 space-y-3">
                 {candidate.topics.map((topic) => (
                   <div key={topic.title} className={`border-l-4 pl-4 ${ink.border}`}>
                     <dt className="font-heading text-2xl leading-none font-bold text-ink uppercase">
                       {topic.title}
                     </dt>
-                    <dd className="mt-2 max-w-xl text-ink/80">
+                    <dd className="mt-1 max-w-xl text-ink/80">
                       {topic.summary}
                       {topic.link && (
                         <a
@@ -54,7 +59,7 @@ const Kandidati = () => (
                           rel="noreferrer"
                           className={`ml-2 label whitespace-nowrap hover:underline ${ink.text}`}
                         >
-                          viac ↗
+                          čítaj viac
                         </a>
                       )}
                     </dd>

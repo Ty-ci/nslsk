@@ -21,6 +21,7 @@ export type Candidate = {
   name: string
   fullName: string
   initials: string
+  aboutMe?: string | null
   /** Hlavná téma kandidáta. */
   mainTopicTitle: string
   /** ID súboru fotky na Google Drive. */
@@ -36,6 +37,8 @@ export const candidates: Candidate[] = [
     name: 'Funko',
     fullName: 'Filip Košťál',
     initials: 'F',
+    aboutMe: `Martin Kukučín, vlastným menom Matej Bencúr (* 17. máj 1860, Jasenová – † 21. máj 1928, Pakrac, Chorvátsko), bol slovenský lekár a šľachtic, známejší ako prozaik, dramatik a publicista. Bol najvýznamnejším predstaviteľom slovenského literárneho realizmu a zakladateľom modernej slovenskej prózy. Je po ňom pomenovaná planétka (23444) Kukučín, poliklinika a operačná sála v Punta Arenas a jeho meno nesie viacero ulíc v slovenských mestách.`,
+    // aboutMe: null,
     photoId: '16yxMPASGVYHuDuVmm3ThvbNuosrfkrDD',
     formHref: 'https://drive.google.com/file/d/1x8DrW7r1LIvxVJ9FkdSD-IhQ20Y-JPMB/view',
     position: 'Náčelník',
@@ -63,6 +66,7 @@ export const candidates: Candidate[] = [
     name: 'Green',
     fullName: 'Miroslav Hrivňák',
     initials: 'G',
+    aboutMe: null,
     photoId: '1fwfJpUWjqJJMScLZLCuoFOnTLOmsI8o0',
     formHref: 'https://drive.google.com/file/d/11flWPAmeNBmdgGYUfIZ5HPxNSCuJlcd2/view',
     position: 'Člen Náčelníctva',
@@ -90,6 +94,7 @@ export const candidates: Candidate[] = [
     name: 'Zved',
     fullName: 'Patrik Kralovič',
     initials: 'Z',
+    aboutMe: null,
     photoId: '19_IvUfZ5L9cgwvfIYnATnV-uaitDkEn_',
     formHref: 'https://drive.google.com/file/d/1Y9I8mwHqxT4kDT8Bm6NQVGtysZFmi3en/view',
     position: 'Člen Náčelníctva',
@@ -109,6 +114,7 @@ export const candidates: Candidate[] = [
     name: 'Žubro',
     fullName: 'Matej Hodas',
     initials: 'Ž',
+    aboutMe: null,
     photoId: '1SYS5szJQYXgZKZxIqBkRw6INqO92YG1q',
     formHref: 'https://drive.google.com/file/d/1txrNWSUpeUwZzWUlDLEWeL44VK9JZog0/view',
     position: 'Člen Náčelníctva',
