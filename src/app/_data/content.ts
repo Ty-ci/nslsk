@@ -37,7 +37,7 @@ export const candidates: Candidate[] = [
     name: 'Funko',
     fullName: 'Filip Košťál',
     initials: 'F',
-    aboutMe: `Martin Kukučín, vlastným menom Matej Bencúr (* 17. máj 1860, Jasenová – † 21. máj 1928, Pakrac, Chorvátsko), bol slovenský lekár a šľachtic, známejší ako prozaik, dramatik a publicista. Bol najvýznamnejším predstaviteľom slovenského literárneho realizmu a zakladateľom modernej slovenskej prózy. Je po ňom pomenovaná planétka (23444) Kukučín, poliklinika a operačná sála v Punta Arenas a jeho meno nesie viacero ulíc v slovenských mestách.`,
+    aboutMe: `Martin Kukučín\n\n vlastným menom Matej Bencúr (* 17. máj 1860, Jasenová – † 21. máj 1928, Pakrac, Chorvátsko), bol slovenský lekár a šľachtic, známejší ako prozaik, dramatik a publicista. Bol najvýznamnejším predstaviteľom slovenského literárneho realizmu a zakladateľom modernej slovenskej prózy. Je po ňom pomenovaná planétka (23444) Kukučín, poliklinika a operačná sála v Punta Arenas a jeho meno nesie viacero ulíc v slovenských mestách.`,
     // aboutMe: null,
     photoId: '16yxMPASGVYHuDuVmm3ThvbNuosrfkrDD',
     formHref: 'https://drive.google.com/file/d/1x8DrW7r1LIvxVJ9FkdSD-IhQ20Y-JPMB/view',

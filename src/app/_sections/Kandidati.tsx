@@ -36,7 +36,7 @@ const Kandidati = () => (
                   {candidate.name}
                 </h3>
                 {candidate.aboutMe ? (
-                  <p className="border-2 border-ink bg-cream-light p-3 text-ink shadow-[4px_4px_0_0_var(--color-ink)]">
+                  <p className="border-2 border-ink bg-cream-light p-3 whitespace-pre-line text-ink shadow-[4px_4px_0_0_var(--color-ink)]">
                     {candidate.aboutMe}
                   </p>
                 ) : null}
