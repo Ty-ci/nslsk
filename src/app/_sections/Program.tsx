@@ -38,7 +38,7 @@ const Program = () => (
                   className="group flex items-baseline justify-between gap-3 py-3.5 text-brand-dark hover:text-brand"
                 >
                   <span className="font-heading text-lg leading-none font-bold uppercase">
-                    {topic.title}
+                    {topic.title} ↗
                   </span>
                   <span className="shrink-0 label text-ink/50 group-hover:text-brand/70">
                     {topic.candidate}

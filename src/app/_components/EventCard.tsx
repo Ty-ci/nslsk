@@ -6,12 +6,8 @@ import { offsetStatic } from '@/app/_lib/theme'
 // two hard facts on printed form lines, then whatever the candidates wrote —
 // Markdown, so a sign-up link can live inside the description.
 const EventCard = ({ event }: { event: SheetEvent }) => (
-  <li className={`flex flex-col bg-cream p-4 ${offsetStatic}`}>
-    <h4 className="font-heading text-2xl/tight font-bold text-ink uppercase">
-      {event.title || 'Stretnutie'}
-    </h4>
-
-    <dl className="mt-2 space-y-2">
+  <li className={`flex flex-col gap-2 bg-cream p-4 ${offsetStatic}`}>
+    <dl className="space-y-1">
       {event.term && (
         <div className="flex items-baseline gap-3">
           <dt className="shrink-0 label text-ink/45">Termín:</dt>
@@ -26,8 +22,12 @@ const EventCard = ({ event }: { event: SheetEvent }) => (
       )}
     </dl>
 
+    <h4 className="font-heading text-2xl/tight font-bold text-ink uppercase">
+      {event.title || 'Stretnutie'}
+    </h4>
+
     {event.description && (
-      <Markdown size="sm" className="mt-4">
+      <Markdown size="sm" className="mt-2">
         {event.description}
       </Markdown>
     )}
