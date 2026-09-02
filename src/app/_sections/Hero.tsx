@@ -36,7 +36,7 @@ const Hero = () => (
               key={`${candidate.name}-position`}
               name={`${candidate.fullName} - ${candidate.name}`}
             >
-              {candidate.position}
+              {candidate.mainTopicTitle}
             </Field>
           ))}
         </dl>

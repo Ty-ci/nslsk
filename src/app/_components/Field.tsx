@@ -15,7 +15,7 @@ type FieldProps = {
 // main way of presenting a fact — used for the ballot block, the meeting slots
 // and the colophon.
 const Field = ({ name, children, onDark = false, className = '' }: FieldProps) => (
-  <div className={`flex flex-col items-baseline gap-x-3 lg:flex-row ${className}`}>
+  <div className={`flex flex-col items-baseline gap-x-3 lg:flex-row lg:flex-wrap ${className}`}>
     <span
       className={`shrink-0 text-right font-heading text-base leading-none font-bold uppercase lg:text-lg ${
         onDark ? 'text-cream' : 'text-ink'

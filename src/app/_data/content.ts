@@ -21,6 +21,8 @@ export type Candidate = {
   name: string
   fullName: string
   initials: string
+  /** Hlavná téma kandidáta. */
+  mainTopicTitle: string
   /** ID súboru fotky na Google Drive. */
   photoId: string
   /** Kandidačný formulár (PDF na Google Drive). */
@@ -37,6 +39,7 @@ export const candidates: Candidate[] = [
     photoId: '16yxMPASGVYHuDuVmm3ThvbNuosrfkrDD',
     formHref: 'https://drive.google.com/file/d/1x8DrW7r1LIvxVJ9FkdSD-IhQ20Y-JPMB/view',
     position: 'Náčelník',
+    mainTopicTitle: 'Náčelník',
     topics: [
       {
         title: 'Stratégia',
@@ -63,6 +66,7 @@ export const candidates: Candidate[] = [
     photoId: '1fwfJpUWjqJJMScLZLCuoFOnTLOmsI8o0',
     formHref: 'https://drive.google.com/file/d/11flWPAmeNBmdgGYUfIZ5HPxNSCuJlcd2/view',
     position: 'Člen Náčelníctva',
+    mainTopicTitle: 'Vzdelávanie a výchova',
     topics: [
       {
         title: 'Vzdelávanie a výchova',
@@ -89,6 +93,7 @@ export const candidates: Candidate[] = [
     photoId: '19_IvUfZ5L9cgwvfIYnATnV-uaitDkEn_',
     formHref: 'https://drive.google.com/file/d/1Y9I8mwHqxT4kDT8Bm6NQVGtysZFmi3en/view',
     position: 'Člen Náčelníctva',
+    mainTopicTitle: 'Rast a podpora dospelých',
     topics: [
       {
         title: 'Rast a podpora dospelých',
@@ -107,6 +112,7 @@ export const candidates: Candidate[] = [
     photoId: '1SYS5szJQYXgZKZxIqBkRw6INqO92YG1q',
     formHref: 'https://drive.google.com/file/d/1txrNWSUpeUwZzWUlDLEWeL44VK9JZog0/view',
     position: 'Člen Náčelníctva',
+    mainTopicTitle: 'Financie a fundraising',
     topics: [
       {
         title: 'Financie a fundraising',
