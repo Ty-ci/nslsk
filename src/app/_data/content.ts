@@ -119,7 +119,9 @@ Na člena Náčelníctva pre dospelých a rast kandidujem preto, lebo chcem spoj
     name: 'Žubro',
     fullName: 'Matej Hodas',
     initials: 'Ž',
-    aboutMe: null,
+    aboutMe: `Som skaut od roku 2009. Bol som radca, vodca oddielu, chvíľu som sa ohrial v tíme LRŠ Stromorast, ale rozhodol som sa sústrediť na Radcovské fórum, kde som bol členom tímu 4 roky a ďalšie 4 roky som tím RFka viedol. Momentálne 6. rok podnikám ako finančný poradca/wealth manager. Milujem funkčné procesy, kontinuálny rozvoj a budovanie vzťahov.
+
+Kandidujem z 2 dôvodov. Prvým je, že skauting mi toho za posledných 17 rokov dal extrémne veľa, a preto chcem niečo tejto organizácii vrátiť. Tým druhým je moje presvedčenie, že skauting ponúka dnešnému svetu dostatočnú hodnotu na to, aby sa uchádzal o omnoho viac zdrojov ako dnes a aby ich aj získal. Chcem jedného dňa vidieť skauting ako finančne zabezpečenú a odolnú organizáciu.`,
     photoId: '1SYS5szJQYXgZKZxIqBkRw6INqO92YG1q',
     formHref: 'https://drive.google.com/file/d/1txrNWSUpeUwZzWUlDLEWeL44VK9JZog0/view',
     position: 'Člen Náčelníctva',
