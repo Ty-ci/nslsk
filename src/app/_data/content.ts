@@ -97,7 +97,9 @@ Nad kandidatúrou do Náčelníctva som rozmýšľal už pred posledným snemom,
     name: 'Zved',
     fullName: 'Patrik Kralovič',
     initials: 'Z',
-    aboutMe: null,
+    aboutMe: `Som Zved a posledných 10 rokov som fungoval na oblastnej úrovni — prešiel som si rôznymi pozíciami ako rozvojár či hospodár a 5 rokov som bol vodcom oblasti. Posledných 7 rokov pôsobím taktiež vo vzdelávacom tíme VLŠ Safari, ktorému som dva roky aj šéfoval ako vodca. V civile pracujem v IT bezpečnosti, no moje srdce patrí ľuďom, projektom a budovaniu komunity.
+
+Na člena Náčelníctva pre dospelých a rast kandidujem preto, lebo chcem spojiť svoje skúsenosti z vedenia oblasti so systematickým projektovým manažmentom a modernými technológiami. Verím v skauting, ktorý stojí na pevných základoch, no nebojí sa pozerať dopredu a fungovať efektívne. Chcem prispieť k tomu, aby náš skauting rástol, bol bezpečný a dával zmysel každej jednej družine aj oblasti. Poďme do toho spolu!`,
     photoId: '19_IvUfZ5L9cgwvfIYnATnV-uaitDkEn_',
     formHref: 'https://drive.google.com/file/d/1Y9I8mwHqxT4kDT8Bm6NQVGtysZFmi3en/view',
     position: 'Člen Náčelníctva',
