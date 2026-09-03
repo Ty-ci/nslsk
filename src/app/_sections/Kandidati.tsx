@@ -16,13 +16,13 @@ const Kandidati = () => (
 
     {/* One numbered entry per candidate: portrait pasted into the margin, the
         record running beside it, a heavy rule between entries. */}
-    <div className="mt-16 flex flex-col gap-14 lg:gap-16">
+    <div className="mt-20 flex flex-col gap-20">
       {candidates.map((candidate, i) => {
         const ink = inkAt(i)
 
         return (
-          <article key={candidate.name} className="flex flex-col gap-4 lg:gap-8">
-            <div className="flex flex-col gap-6 lg:flex-row">
+          <article key={candidate.name} className="flex flex-col lg:gap-8">
+            <div className="flex flex-col gap-8 lg:flex-row lg:gap-10">
               <Photo
                 photoId={candidate.photoId}
                 name={candidate.name}
@@ -36,7 +36,7 @@ const Kandidati = () => (
                   {candidate.name}
                 </h3>
                 {candidate.aboutMe ? (
-                  <p className="border-2 border-ink bg-cream-light p-3 whitespace-pre-line text-ink shadow-[4px_4px_0_0_var(--color-ink)]">
+                  <p className="border-2 border-ink bg-cream-light p-4 whitespace-pre-line text-ink shadow-[4px_4px_0_0_var(--color-ink)]">
                     {candidate.aboutMe}
                   </p>
                 ) : null}

@@ -37,8 +37,9 @@ export const candidates: Candidate[] = [
     name: 'Funko',
     fullName: 'Filip Košťál',
     initials: 'F',
-    aboutMe: `Martin Kukučín\n\n vlastným menom Matej Bencúr (* 17. máj 1860, Jasenová – † 21. máj 1928, Pakrac, Chorvátsko), bol slovenský lekár a šľachtic, známejší ako prozaik, dramatik a publicista. Bol najvýznamnejším predstaviteľom slovenského literárneho realizmu a zakladateľom modernej slovenskej prózy. Je po ňom pomenovaná planétka (23444) Kukučín, poliklinika a operačná sála v Punta Arenas a jeho meno nesie viacero ulíc v slovenských mestách.`,
-    // aboutMe: null,
+    aboutMe: `Som Funko a rozosmejem teba aj seba! V skautingu som zakladal LRŠ Vulkán aj vekovú kategóriu rangerov, dve volebné obdobia som viedol oblasť (aj s BSD) a 3 roky pôsobil ako Team Leader na tému rastu v Európskom skautskom regióne WOSM. Dnes sa v SLSK venujem dátam a na GILške  lektorujem strategické plánovanie a rast organizácie.
+
+Na náčelníka kandidujem preto, že mi sedí naša stratégia a vďaka európskym skúsenostiam viem, ako funguje rast skautských organizácií. Tieto vedomosti chcem ponúknuť SLSK. Mám silné prepojenie na domáci aj WOSM skauting a verím, že z toho vieme spoločne vyťažiť maximum. Poďme do toho spolu!`,
     photoId: '16yxMPASGVYHuDuVmm3ThvbNuosrfkrDD',
     formHref: 'https://drive.google.com/file/d/1x8DrW7r1LIvxVJ9FkdSD-IhQ20Y-JPMB/view',
     position: 'Náčelník',
@@ -66,7 +67,9 @@ export const candidates: Candidate[] = [
     name: 'Green',
     fullName: 'Miroslav Hrivňák',
     initials: 'G',
-    aboutMe: null,
+    aboutMe: `Posledných šesť rokov som pôsobil ako hlavný kapitán vodných skautov. Podieľal som sa na príprave Stratégie SLSK, programu vodného skautingu a Modrého nováčika, som súčasťou tímu FGILŠ a dnes sa v Rade pre vzdelávanie venujem úprave radcovských handoutov a príprave stratégie a štruktúry RPV.
+
+Nad kandidatúrou do Náčelníctva som rozmýšľal už pred posledným snemom, vtedy som však chcel najskôr dotiahnuť rozbehnuté veci vo vodnom skautingu. Dnes mám dobrý vhľad do fungovania národnej úrovne, vidím témy, ktoré by som chcel posúvať, a hlavne mám okolo seba ľudí, s ktorými na nich chcem pracovať. Verím, že svoje skúsenosti viem využiť aj pre SLSK ako celok, a preto mi práve teraz dáva zmysel kandidovať.`,
     photoId: '1fwfJpUWjqJJMScLZLCuoFOnTLOmsI8o0',
     formHref: 'https://drive.google.com/file/d/11flWPAmeNBmdgGYUfIZ5HPxNSCuJlcd2/view',
     position: 'Člen Náčelníctva',
