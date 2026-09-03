@@ -206,7 +206,7 @@ export const milestones: Milestone[] = [
 
 export const contact = {
   intro:
-    'Radi by sme vám osobne (alebo aspoň cez obrazovky) odprezentovali náš program a víziu, s ktorou do toho ideme. Ešte dôležitejšie pre nás ale je počuť *váš* pohľad a spätnú väzbu.',
+    'Radi by sme vám odprezentovali náš program a víziu, s ktorou do toho ideme. Ešte dôležitejšie pre nás ale je počuť *váš* pohľad a spätnú väzbu.',
   questions: [
     'Čo vám v návrhu dáva zmysel?',
     'Kde naopak vidíte riziká?',
