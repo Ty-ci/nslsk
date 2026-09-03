@@ -94,10 +94,7 @@ const Otazky = () => {
         {!isLoading && !hasFailed && questions.length === 0 && (
           <div className="mt-10 max-w-2xl border-2 border-dashed border-ink/35 bg-ink/3 p-6">
             <p className="label text-ink/55">Zatiaľ tu nič nie je</p>
-            <p className="mt-3 text-ink/75">
-              Žiadnu otázku sme ešte nezverejnili. Buďte prví — na každú otázku odpovedáme a odpoveď
-              pridáme sem.
-            </p>
+            <p className="mt-3 text-ink/75">Žiadnu otázku sme ešte nezverejnili. Buďte prví!</p>
           </div>
         )}
 
