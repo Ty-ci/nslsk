@@ -4,10 +4,9 @@ A mostly static site built with **Next.js (App Router) + React + TypeScript + Ta
 one-pager whose nav anchors to its sections. There is no second route — the Q&A lives inside the
 „Stretnime sa" section, under its own `#otazky` anchor.
 
-While the content is being written, the one-pager is parked at **`/dev`** and `/` is just the
-turning lily. Every in-page link is therefore hash-only (`#temy`, never `/#temy`), so the anchors
-follow the page when it moves back to `/` — see `anchorHref` in
-[`src/app/_lib/navigation.ts`](src/app/_lib/navigation.ts).
+Every in-page link is hash-only (`#temy`, never `/#temy`), so the anchors are resolved against
+whatever URL the page is served from — that is how it moved from `/dev` to `/` without a link to
+update. See `anchorHref` in [`src/app/_lib/navigation.ts`](src/app/_lib/navigation.ts).
 
 ## Getting started
 
@@ -20,10 +19,8 @@ npm run dev      # start the dev server at http://localhost:3000
 
 ```
 src/app/
-  layout.tsx              shell: <html>, metadata and the design tokens
-  page.tsx                / — parked: the turning lily, nothing else
-  (pages)/dev/layout.tsx  the real shell: header, body, colophon
-  (pages)/dev/page.tsx    the one-pager — maps section ids onto components
+  layout.tsx              shell: <html>, metadata, header, body, colophon
+  page.tsx                / — the one-pager, maps section ids onto components
   [...slug]/page.tsx      catch-all → redirects unknown paths to /
   api/content/route.ts    GET /api/content, the sheet-backed JSON
   _components/            shared UI
@@ -36,8 +33,7 @@ src/app/
 ```
 
 Section order and the nav menu live in [`src/app/_lib/navigation.ts`](src/app/_lib/navigation.ts);
-each id is wired to its component in
-[`src/app/(pages)/dev/page.tsx`](<src/app/(pages)/dev/page.tsx>), and the `Record` there makes
+each id is wired to its component in [`src/app/page.tsx`](src/app/page.tsx), and the `Record` there makes
 TypeScript insist on a component for every entry. `navigation.ts` deliberately imports no
 components — the header is a client component, so anything it reached would ship to the browser.
 

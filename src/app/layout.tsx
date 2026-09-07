@@ -3,6 +3,9 @@ import './globals.css'
 import type { Metadata } from 'next'
 import type { ReactNode } from 'react'
 
+import Footer from '@/app/_components/Footer'
+import Header from '@/app/_components/Header'
+
 const siteTitle = 'Spolu do toho · Kandidatúra do N-SLSK 2026'
 
 export const metadata: Metadata = {
@@ -14,13 +17,17 @@ export const metadata: Metadata = {
   icons: { icon: '/favicon.svg' },
 }
 
-// The bare document shell: the only `<html>`/`<body>` in the app, and nothing
-// else — not even the `<main>`, since the header/footer shell now belongs to the
-// routes that want it (see `(pages)/dev/layout.tsx`) and `/` is parked as the
-// turning lily.
+// The whole shell: the only `<html>`/`<body>` in the app, plus the header and
+// colophon that frame the one-pager. There is only the one page to frame — the
+// catch-all redirects before it renders — so this lives here rather than in a
+// layout of its own.
 const RootLayout = ({ children }: { children: ReactNode }) => (
   <html lang="sk">
-    <body className="min-h-screen">{children}</body>
+    <body className="min-h-screen">
+      <Header />
+      <main>{children}</main>
+      <Footer />
+    </body>
   </html>
 )
 

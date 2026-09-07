@@ -1,6 +1,6 @@
 // Single source of truth for the one-pager: the nav menu, the section shells on
 // the page and the scroll-spy all derive from this list. Add a section by adding
-// an entry here and wiring its component up in `src/app/(pages)/dev/page.tsx` —
+// an entry here and wiring its component up in `src/app/page.tsx` —
 // the `Record<SectionId, …>` there makes TypeScript insist on it.
 //
 // Deliberately holds no component imports: the header is a client component, so
@@ -34,7 +34,7 @@ export type AnchorId = SectionId | typeof qaAnchor
 /**
  * A link to an anchor on the page. Hash-only on purpose: the browser resolves
  * it against the URL currently open, so every anchor keeps working wherever the
- * one-pager is mounted — today `/dev`, later `/` — with no link to update.
- * Never write `/#id`: that pins the anchor to the root route.
+ * one-pager is mounted — it has already moved once, from `/dev` to `/`, without
+ * a link to update. Never write `/#id`: that pins the anchor to the root route.
  */
 export const anchorHref = (id: AnchorId) => `#${id}`

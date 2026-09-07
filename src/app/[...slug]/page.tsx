@@ -1,6 +1,6 @@
 import { redirect } from 'next/navigation'
 
-// Anything that isn't the one-pager or the Q&A page — an old link, a typo —
+// Anything that isn't the one-pager — an old link (`/dev`, `/otazky`), a typo —
 // lands on the one-pager, the way the router's catch-all route used to.
 //
 // This is a route rather than `not-found.tsx` on purpose: a `redirect()` from

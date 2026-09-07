@@ -63,7 +63,7 @@ const Label = ({ children }: { children: ReactNode }) => (
 )
 
 /**
- * Routes (`/dev`) go through the router; in-page anchors (`#temy`) deliberately
+ * Routes (`/`) go through the router; in-page anchors (`#temy`) deliberately
  * do not — a plain `<a href="#id">` is resolved against the URL currently open,
  * so it survives the page moving in the folder structure.
  */
