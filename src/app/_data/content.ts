@@ -67,7 +67,7 @@ Na náčelníka kandidujem preto, že mi sedí naša stratégia a vďaka európs
     name: 'Green',
     fullName: 'Miroslav Hrivňák',
     initials: 'G',
-    aboutMe: `Posledných šesť rokov som pôsobil ako hlavný kapitán vodných skautov. Podieľal som sa na príprave Stratégie SLSK, programu vodného skautingu a Modrého nováčika, som súčasťou tímu FGILŠ a dnes sa v Rade pre vzdelávanie venujem úprave radcovských handoutov a príprave stratégie a štruktúry RPV.
+    aboutMe: `Posledných šesť rokov som pôsobil ako hlavný kapitán vodných skautov. Podieľal som sa na príprave Stratégie SLSK, programu vodného skautingu a Modrého nováčika, som súčasťou tímu GILŠ a dnes sa v Rade pre vzdelávanie venujem úprave radcovských handoutov a príprave stratégie a štruktúry RPV.
 
 Nad kandidatúrou do Náčelníctva som rozmýšľal už pred posledným snemom, vtedy som však chcel najskôr dotiahnuť rozbehnuté veci vo vodnom skautingu. Dnes mám dobrý vhľad do fungovania národnej úrovne, vidím témy, ktoré by som chcel posúvať, a hlavne mám okolo seba ľudí, s ktorými na nich chcem pracovať. Verím, že svoje skúsenosti viem využiť aj pre SLSK ako celok, a preto mi práve teraz dáva zmysel kandidovať.`,
     photoId: '1fwfJpUWjqJJMScLZLCuoFOnTLOmsI8o0',
