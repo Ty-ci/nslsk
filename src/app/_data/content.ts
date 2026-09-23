@@ -179,9 +179,19 @@ export const sharedTopics: SharedTopic[] = [
     title: 'AI v organizácii',
     body: 'Pre organizáciu Slovenský skauting ako celok nastavíme jasnú koncepciu využívania umelej inteligencie. Na národnej úrovni s jej pomocou zautomatizujeme byrokraciu a do programu v oddieloch prinesieme témy digitálnej gramotnosti, aby naši členovia zostali samostatnými a tvorivými lídrami.',
   },
+  // {
+  //   title: 'Inklúzia (orig)',
+  //   body: 'Vyhodnotíme aktuálny projekt zameraný na LGBTI+ členov a na jeho základe nastavíme nový, komplexný projekt inklúzie pre organizáciu. Proces tvorby bude transparentný a zabezpečí jednotný a koncepčný prístup.',
+  // },
   {
     title: 'Inklúzia',
-    body: 'Vyhodnotíme aktuálny projekt zameraný na LGBTI+ členov a na jeho základe nastavíme nový, komplexný projekt inklúzie pre organizáciu. Proces tvorby bude transparentný a zabezpečí jednotný a koncepčný prístup.',
+    body: `V roku 2024 sa skautské organizácie združené vo WOSM spoločne prihlásili k ambícii byť najinovatívnejšou a najinkluzívnejšou mládežníckou organizáciou. Aj pripravovaný projekt inklúzie bude tento cieľ reflektovať, samozrejme s ohľadom na slovenskú realitu a potreby našej organizácie.
+    
+    Pre nás však inklúzia nie je niečo oddelené od skautingu. Vychádza priamo z našich hodnôt – zo skautského zákona, nášho sľubu a poslania. Byť inkluzívnou organizáciou pre nás znamená aj napĺňať myšlienku byť priateľom všetkých ľudí dobrej vôle a vytvárať prostredie, v ktorom má akýkoľvek človek miesto. 
+    
+    Cieľom projektu preto bude pozrieť sa komplexne na to, aké prekážky dnes ľuďom bránia vstúpiť do skautingu, zostať v ňom alebo sa v ňom cítiť prijatí, a hľadať praktické spôsoby, ako ich odstraňovať. Chceme, aby výsledkom nebol iba dokument, ale konkrétna podpora pre oddiely a zbory a použiteľné riešenia pre každodenný skautský život.
+    
+    Zároveň nechceme prispievať k ďalšej polarizácii spoločnosti ani ľudí rozdeľovať do táborov. Naopak, chceme stavať na tom, čo máme spoločné – na skautských hodnotách, vzájomnom rešpekte, službe druhým a schopnosti spolupracovať aj napriek rozdielom. Práve v tom vidíme zmysel inklúzie v skautskom prostredí.`,
   },
 ]
 

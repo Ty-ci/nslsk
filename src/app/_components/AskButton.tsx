@@ -34,7 +34,7 @@ const AskButton = ({
         {children}
       </Button>
 
-      <Modal isOpen={isOpen} onClose={() => setIsOpen(false)} title="Máte otázku pre nás?">
+      <Modal isOpen={isOpen} onClose={() => setIsOpen(false)} title="Otázky">
         {/* Mounted only while the modal is open, so nobody pays for Google's
             form on a page view that never asks anything. */}
         {isOpen && (

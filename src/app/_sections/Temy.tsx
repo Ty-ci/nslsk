@@ -30,7 +30,7 @@ const Temy = () => (
               </h3>
             </div>
 
-            <p className="mt-4 max-w-xl text-ink/80 lg:pl-12">{topic.body}</p>
+            <p className="mt-4 max-w-xl whitespace-pre-line text-ink/80 lg:pl-12">{topic.body}</p>
 
             {topic.link && (
               <a
