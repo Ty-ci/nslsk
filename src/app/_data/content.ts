@@ -185,13 +185,7 @@ export const sharedTopics: SharedTopic[] = [
   // },
   {
     title: 'Inklúzia',
-    body: `V roku 2024 sa skautské organizácie združené vo WOSM spoločne prihlásili k ambícii byť najinovatívnejšou a najinkluzívnejšou mládežníckou organizáciou. Aj pripravovaný projekt inklúzie bude tento cieľ reflektovať, samozrejme s ohľadom na slovenskú realitu a potreby našej organizácie.
-    
-    Pre nás však inklúzia nie je niečo oddelené od skautingu. Vychádza priamo z našich hodnôt – zo skautského zákona, nášho sľubu a poslania. Byť inkluzívnou organizáciou pre nás znamená aj napĺňať myšlienku byť priateľom všetkých ľudí dobrej vôle a vytvárať prostredie, v ktorom má akýkoľvek človek miesto. 
-    
-    Cieľom projektu preto bude pozrieť sa komplexne na to, aké prekážky dnes ľuďom bránia vstúpiť do skautingu, zostať v ňom alebo sa v ňom cítiť prijatí, a hľadať praktické spôsoby, ako ich odstraňovať. Chceme, aby výsledkom nebol iba dokument, ale konkrétna podpora pre oddiely a zbory a použiteľné riešenia pre každodenný skautský život.
-    
-    Zároveň nechceme prispievať k ďalšej polarizácii spoločnosti ani ľudí rozdeľovať do táborov. Naopak, chceme stavať na tom, čo máme spoločné – na skautských hodnotách, vzájomnom rešpekte, službe druhým a schopnosti spolupracovať aj napriek rozdielom. Práve v tom vidíme zmysel inklúzie v skautskom prostredí.`,
+    body: 'Inklúzia patrí do skautingu. Zosumarizujeme aktuálny stav doterajších krokov a budeme v tomto kurze pokračovať s jasným, transparentným a koncepčným plánom.',
   },
 ]
 
