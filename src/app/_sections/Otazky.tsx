@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef, useState } from 'react'
+import { useMemo, useRef, useState } from 'react'
 
 import AskButton from '@/app/_components/AskButton'
 import Pagination from '@/app/_components/Pagination'
@@ -10,6 +10,7 @@ import Section from '@/app/_components/Section'
 import { qa } from '@/app/_data/content'
 import { useSheetContent } from '@/app/_hooks/useSheetContent'
 import { qaAnchor } from '@/app/_lib/navigation'
+import { queryTerms, questionHaystack } from '@/app/_lib/questions'
 import { offsetStatic } from '@/app/_lib/theme'
 
 // Long lists get paged rather than printed in full: ten exchanges is about as
@@ -27,15 +28,30 @@ const Otazky = () => {
   const { content, isLoading, hasFailed } = useSheetContent()
   const { questions } = content
   const [page, setPage] = useState(1)
+  const [query, setQuery] = useState('')
   const listRef = useRef<HTMLOListElement>(null)
+
+  // Haystacks are built once per sheet load, not on every keystroke.
+  const haystacks = useMemo(() => questions.map(questionHaystack), [questions])
+  const terms = queryTerms(query)
+  const matchingQuestions =
+    terms.length === 0
+      ? questions
+      : questions.filter((_, index) => terms.every((term) => haystacks[index].includes(term)))
+
+  // A new search starts from the first page of its own results.
+  const search = (next: string) => {
+    setQuery(next)
+    setPage(1)
+  }
 
   // The sheet loads after the first render, so the page number is clamped on
   // read rather than reset in an effect: whatever is in state, we never slice
   // past the end of the list.
-  const pageCount = Math.max(1, Math.ceil(questions.length / perPage))
+  const pageCount = Math.max(1, Math.ceil(matchingQuestions.length / perPage))
   const currentPage = Math.min(page, pageCount)
   const firstOnPage = (currentPage - 1) * perPage
-  const visibleQuestions = questions.slice(firstOnPage, firstOnPage + perPage)
+  const visibleQuestions = matchingQuestions.slice(firstOnPage, firstOnPage + perPage)
 
   // Paging keeps the reader where the list starts, not where the last answer of
   // the previous page happened to end.
@@ -69,9 +85,7 @@ const Otazky = () => {
           <AskButton variant="sun" className="mt-6" />
         </div>
 
-        {isLoading && (
-          <p className="mt-10 animate-pulse label text-ink/45">Načítavame otázky z tabuľky…</p>
-        )}
+        {isLoading && <p className="mt-10 animate-pulse label text-ink/45">Načítavame otázky...</p>}
 
         {!isLoading && hasFailed && (
           <div className="mt-10 max-w-2xl border-2 border-dashed border-brand/60 bg-brand/5 p-6">
@@ -100,7 +114,41 @@ const Otazky = () => {
 
         {questions.length > 0 && (
           <>
-            <ol ref={listRef} className="mt-12 scroll-mt-24">
+            <div className="mt-12 max-w-2xl">
+              <label htmlFor="qa-search" className="label text-ink/60">
+                Hľadať v otázkach
+              </label>
+              <div className="relative mt-2">
+                <input
+                  id="qa-search"
+                  type="search"
+                  value={query}
+                  onChange={(event) => search(event.target.value)}
+                  placeholder="..."
+                  autoComplete="off"
+                  className="w-full appearance-none border-2 border-ink bg-cream-light py-3 pr-12 pl-4 text-lg text-ink placeholder:text-ink/40 focus:outline-2 focus:outline-offset-2 focus:outline-brand [&::-webkit-search-cancel-button]:hidden"
+                />
+                {query !== '' && (
+                  <button
+                    type="button"
+                    onClick={() => search('')}
+                    aria-label="Vymazať hľadanie"
+                    className="absolute inset-y-0 right-0 flex w-12 cursor-pointer items-center justify-center text-2xl text-ink/50 hover:text-brand"
+                  >
+                    ×
+                  </button>
+                )}
+              </div>
+              {terms.length > 0 && (
+                <p aria-live="polite" className="mt-3 label text-ink/55">
+                  {matchingQuestions.length === 0
+                    ? 'Nič sme nenašli'
+                    : `Nájdené: ${matchingQuestions.length}`}
+                </p>
+              )}
+            </div>
+
+            <ol ref={listRef} className="mt-10 scroll-mt-24">
               {visibleQuestions.map((question) => (
                 <QuestionEntry key={question.id} question={question} />
               ))}

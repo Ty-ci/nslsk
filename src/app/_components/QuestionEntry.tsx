@@ -1,14 +1,8 @@
+import Clamp from '@/app/_components/Clamp'
 import Markdown from '@/app/_components/Markdown'
 import Stamp from '@/app/_components/Stamp'
+import { formatQuestionDate } from '@/app/_lib/questions'
 import type { SheetQuestion } from '@/app/_lib/sheetContent'
-
-const dateFormat = new Intl.DateTimeFormat('sk-SK', {
-  day: 'numeric',
-  month: 'numeric',
-  year: 'numeric',
-})
-
-const formatDate = (isoDate: string) => dateFormat.format(new Date(`${isoDate}T00:00:00`))
 
 // One entry off the `otazky` sheet, printed as a two-turn exchange: the question
 // spoken from the left, our answer coming back from the right. The bubbles are
@@ -25,11 +19,11 @@ const QuestionEntry = ({ question }: { question: SheetQuestion }) => {
         <p className="flex flex-wrap items-baseline gap-x-2 label text-ink/80">
           {question.name && <span>{question.name}</span>}
           {question.name && question.date && <span aria-hidden="true">·</span>}
-          {question.date && <span>{formatDate(question.date)}</span>}
+          {question.date && <span>{formatQuestionDate(question.date)}</span>}
         </p>
-        <h4 className="mt-2 font-heading text-xl/tight font-medium text-ink">
-          {question.question}
-        </h4>
+        <Clamp className="mt-2">
+          <h4 className="font-heading text-xl/tight font-medium text-ink">{question.question}</h4>
+        </Clamp>
 
         {/* Tail, bottom left — the asker speaking from the floor. */}
         <span
@@ -48,7 +42,9 @@ const QuestionEntry = ({ question }: { question: SheetQuestion }) => {
         </Stamp>
       ) : (
         <div className="relative w-fit border-2 border-ink bg-sand/70 px-5 py-4 max-lg:self-end lg:ml-4">
-          <Markdown>{question.answer}</Markdown>
+          <Clamp>
+            <Markdown>{question.answer}</Markdown>
+          </Clamp>
 
           {/* Tail, top right — the answer coming back from our side. */}
           <span
