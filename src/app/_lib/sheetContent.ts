@@ -28,6 +28,8 @@ export type SheetEvent = {
   form: string
   /** When it happens — free text, so “piatok večer” works too. */
   term: string
+  /** ISO date (`2026-10-12`) read out of `term`, when it contains one. */
+  date?: string
   /** Markdown, may contain `[text](url)` links. */
   description: string
 }

@@ -185,6 +185,38 @@ const toIsoDate = (timestamp: string): string | undefined => {
   return Number.isNaN(parsed.getTime()) ? undefined : parsed.toISOString().slice(0, 10)
 }
 
+const toIso = (year: number, month: number, day: number): string | undefined => {
+  const date = new Date(Date.UTC(year, month - 1, day))
+  // Rejects 31. 2. and friends, which Date would quietly roll into March.
+  if (date.getUTCMonth() !== month - 1 || date.getUTCDate() !== day) {
+    return undefined
+  }
+
+  return date.toISOString().slice(0, 10)
+}
+
+/**
+ * The first date written in a free-text “Termín” — `12. 10. 2026 o 18:00`,
+ * `štvrtok 12.10.` or `2026-10-12`. A missing year means this year. Terms with
+ * no date in them (“piatok večer”) give nothing, and such events never count
+ * as past.
+ */
+const dateFromTerm = (term: string): string | undefined => {
+  const iso = /(\d{4})-(\d{2})-(\d{2})/.exec(term)
+  if (iso) {
+    return toIso(Number(iso[1]), Number(iso[2]), Number(iso[3]))
+  }
+
+  const slovak = /(\d{1,2})\.\s*(\d{1,2})\.(?:\s*(\d{4}))?/.exec(term)
+  if (slovak) {
+    const year = slovak[3] ? Number(slovak[3]) : new Date().getFullYear()
+
+    return toIso(year, Number(slovak[2]), Number(slovak[1]))
+  }
+
+  return undefined
+}
+
 const parseQuestions = (rows: Rows): SheetQuestion[] => {
   // The sheet can be shorter than the header row if someone empties it.
   const headerRow = rows.at(HEADER_ROW - 1)
@@ -254,15 +286,24 @@ const parseEvents = (rows: Rows): SheetEvent[] => {
 
   return rows
     .slice(HEADER_ROW)
-    .map((row, index) => ({
+    .map((row, index) => {
       // Kept in sheet order: the candidates curate the list themselves, and
       // “Termín” is free text, so it can't be sorted on reliably.
-      id: `e-${HEADER_ROW + index + 1}`,
-      title: cell(row, titleAt),
-      form: cell(row, formAt),
-      term: cell(row, termAt),
-      description: cell(row, descriptionAt),
-    }))
+      const event: SheetEvent = {
+        id: `e-${HEADER_ROW + index + 1}`,
+        title: cell(row, titleAt),
+        form: cell(row, formAt),
+        term: cell(row, termAt),
+        description: cell(row, descriptionAt),
+      }
+
+      const date = dateFromTerm(event.term)
+      if (date) {
+        event.date = date
+      }
+
+      return event
+    })
     .filter((event) => event.title !== '' || event.term !== '')
 }
 

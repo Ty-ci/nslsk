@@ -6,6 +6,8 @@ type MarkdownProps = {
   children: string
   /** Type size for the whole block; the elements below inherit it. */
   size?: 'base' | 'sm'
+  /** Print links as plain underlined text — e.g. a sign-up link for a past event. */
+  linksDisabled?: boolean
   className?: string
 }
 
@@ -73,9 +75,27 @@ const components: Components = {
   hr: () => <span aria-hidden="true" className="mt-5 block h-0.5 w-24 bg-ink/25" />,
 }
 
-const Markdown = ({ children, size = 'base', className = '' }: MarkdownProps) => (
+// Same look, minus the link: no href to follow, no hover, no tab stop.
+const componentsWithoutLinks: Components = {
+  ...components,
+  a: ({ children }) => (
+    <span className="text-ink underline decoration-ink/30 decoration-2 underline-offset-4">
+      {children}
+    </span>
+  ),
+}
+
+const Markdown = ({
+  children,
+  size = 'base',
+  linksDisabled = false,
+  className = '',
+}: MarkdownProps) => (
   <div className={`${size === 'sm' ? 'text-sm' : 'text-lg'} ${className}`}>
-    <ReactMarkdown components={components} remarkPlugins={[remarkGfm]}>
+    <ReactMarkdown
+      components={linksDisabled ? componentsWithoutLinks : components}
+      remarkPlugins={[remarkGfm]}
+    >
       {children}
     </ReactMarkdown>
   </div>
