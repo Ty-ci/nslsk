@@ -1,9 +1,8 @@
-import Link from 'next/link'
-
 import Avatar from '@/app/(web)/_components/Avatar'
 import Button from '@/app/(web)/_components/Button'
 import Eyebrow from '@/app/(web)/_components/Eyebrow'
 import Lily from '@/app/(web)/_components/Lily'
+import LinkCard from '@/app/(web)/_components/LinkCard'
 import Section from '@/app/(web)/_components/Section'
 import Tag from '@/app/(web)/_components/Tag'
 import { people } from '@/app/(web)/_data/people'
@@ -67,25 +66,10 @@ const Home = () => (
 
       <ul className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {destinations.map(({ href, title, text }) => (
-          <li
-            key={href}
-            className="group relative flex flex-col rounded-card border border-line bg-white p-6 transition-colors duration-200 hover:border-navy md:p-8"
-          >
-            <h3 className="text-h4 font-semibold">
-              <Link
-                href={href}
-                className="rounded-leaf focus-ring after:absolute after:inset-0 after:rounded-card"
-              >
-                {title}
-              </Link>
-            </h3>
-            <p className="mt-2 flex-1 text-sm/6">{text}</p>
-            <span
-              aria-hidden="true"
-              className="mt-6 font-bold text-navy transition-transform duration-200 group-hover:translate-x-1"
-            >
-              →
-            </span>
+          <li key={href} className="flex">
+            <LinkCard href={href} title={title}>
+              {text}
+            </LinkCard>
           </li>
         ))}
 
