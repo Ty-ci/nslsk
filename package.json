@@ -29,6 +29,7 @@
     "server-only": "^0.0.1"
   },
   "devDependencies": {
+    "@babel/preset-react": "^8.0.1",
     "@bratislava/eslint-config-next": "^0.14.0",
     "@netlify/plugin-nextjs": "^5.14.4",
     "@tailwindcss/postcss": "^4.3.2",

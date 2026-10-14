@@ -10,10 +10,21 @@ export default [
     ],
   }),
   // https://github.com/bratislava/eslint-config/blob/main/packages/next/README.md#tailwind-css
+  // Two sites, two stylesheets: the new infoweb by default, and the archived
+  // candidacy site checked against its own tokens.
   {
     settings: {
       'better-tailwindcss': {
-        entryPoint: './src/app/globals.css',
+        entryPoint: './src/app/(web)/web.css',
+        callees: ['cx', 'classnames', 'clsx', 'cn', 'twMerge', 'tw'],
+      },
+    },
+  },
+  {
+    files: ['src/app/archiv/kandidatka2026/**'],
+    settings: {
+      'better-tailwindcss': {
+        entryPoint: './src/app/archiv/kandidatka2026/archive.css',
         callees: ['cx', 'classnames', 'clsx', 'cn', 'twMerge', 'tw'],
       },
     },

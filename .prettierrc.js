@@ -6,5 +6,7 @@ module.exports = {
   printWidth: 100,
   plugins: ['prettier-plugin-tailwindcss'],
   tailwindFunctions: ['clsx', 'cn'],
-  tailwindStylesheet: './src/app/globals.css',
+  // Only one stylesheet can be named: the new infoweb's. The archive's own
+  // tokens (`archiv/kandidatka2026/archive.css`) sort as unknown classes.
+  tailwindStylesheet: './src/app/(web)/web.css',
 }

@@ -1,0 +1,1 @@
+- Adjust the table change script so it gathers changes done in one row and logs them as a single entry

@@ -1,12 +1,19 @@
 # nslsk
 
-A mostly static site built with **Next.js (App Router) + React + TypeScript + Tailwind CSS**: a
-one-pager whose nav anchors to its sections. There is no second route — the Q&A lives inside the
-„Stretnime sa" section, under its own `#otazky` anchor.
+The internal infoweb of the **Náčelníctvo Slovenského skautingu** (2026–2029), for the Náčelníctvo,
+the Ústredie and the support teams. Built with **Next.js (App Router) + React + TypeScript + Tailwind
+CSS**, with Google Sheets as the CMS.
 
-Every in-page link is hash-only (`#temy`, never `/#temy`), so the anchors are resolved against
-whatever URL the page is served from — that is how it moved from `/dev` to `/` without a link to
-update. See `anchorHref` in [`src/app/_lib/navigation.ts`](src/app/_lib/navigation.ts).
+It is two sites in one app:
+
+- **The infoweb** at `/`: the current site. Its visual language is specified in
+  [`DESIGN_SPECS.md`](DESIGN_SPECS.md); build anything new from that.
+- **The archive** at `/archiv/kandidatka2026`: the 2026 candidacy one-pager „Spolu do toho!“,
+  frozen as it was. The old `/otazky` and `/dev` paths redirect into it (`next.config.mjs`).
+
+Each site has **its own root layout and its own stylesheet**, so neither design can leak into the
+other. There is deliberately no top-level `src/app/layout.tsx`. Moving between the two is a full
+page load.
 
 ## Getting started
 
@@ -18,59 +25,141 @@ npm run dev      # start the dev server at http://localhost:3000
 ## Layout
 
 ```
-src/app/
-  layout.tsx              shell: <html>, metadata, header, body, colophon
-  page.tsx                / — the one-pager, maps section ids onto components
-  [...slug]/page.tsx      catch-all → redirects unknown paths to /
-  api/content/route.ts    GET /api/content, the sheet-backed JSON
-  _components/            shared UI
-  _sections/              the one-pager's sections
-  _hooks/                 client-side hooks (scroll-spy, sheet fetch)
-  _lib/                   navigation, theme, the /api/content client
-  _data/content.ts        hand-written copy
-  _services/sheets.ts     server-only Google Sheets reader
-  globals.css             Tailwind entry point + the design tokens
+DESIGN_SPECS.md                   design system of the infoweb (tokens, components, rules)
+google-apps-script/changelog.gs   logs manual spreadsheet edits (paste into the sheet's Apps Script)
+src/
+  lib/navigation.ts               every route: menu label + which password keys view / edit it
+  lib/access/                     the password gate
+    check.ts                      checks a password against the `keys` tab (server-only)
+    actions.ts                    server action the prompt calls
+    client.ts                     localStorage + useAccess() hook for the gates
+  lib/changelog/                  the `changelog` tab: logChange(), readChangelog()
+  lib/google-sheets/              shared, server-only Google Sheets access
+    spreadsheet.ts                the site's spreadsheet ID, links to its tabs
+    client.ts                     service-account auth, getValues(), updateValues(), appendValues()
+    cells.ts                      header matching and cell helpers
+  app/
+    robots.ts                     /robots.txt: disallow everything (internal web)
+    (web)/                        THE INFOWEB (route group: no URL segment)
+      layout.tsx                  root layout: <html>, Georama, header, footer, noindex
+      web.css                     Tailwind entry point + design tokens (DESIGN_SPECS.md §11)
+      page.tsx                    / — homepage
+      not-found.tsx, [...slug]/   404 for every unmatched path
+      _components/                design-system primitives (Button, Section, Lily, AccessGate, …)
+      _data/people.ts             the Náčelníctvo: nicknames and areas
+      onboarding/                 /onboarding — sheet-backed checklist
+        page.tsx                  intro + stepper, then tabs: Checklist | História zmien
+        actions.ts                server actions: checklist, its history, tick/untick a cell
+        _lib/sheet.ts             reads/writes the `onboarding` tab (server-only)
+        _data/seed.json           mock tasks, shown read-only if the sheet can't be read
+        _data/phases.ts           the onboarding timeline
+        _components/              checklist UI
+    archiv/kandidatka2026/        THE ARCHIVE (own root layout)
+      layout.tsx, archive.css     the poster look, scoped to the archive
+      page.tsx                    the one-pager
+      api/content/route.ts        GET /archiv/kandidatka2026/api/content (Q&A + events)
+      _services/content.ts        parses the candidacy sheet (server-only)
+      _components/ _sections/ _hooks/ _lib/ _data/
 ```
 
-Section order and the nav menu live in [`src/app/_lib/navigation.ts`](src/app/_lib/navigation.ts);
-each id is wired to its component in [`src/app/page.tsx`](src/app/page.tsx), and the `Record` there makes
-TypeScript insist on a component for every entry. `navigation.ts` deliberately imports no
-components — the header is a client component, so anything it reached would ship to the browser.
+Each stylesheet uses `@import 'tailwindcss' source('.')`, so it only scans its own folder for
+classes. ESLint's Tailwind rules check each folder against its own stylesheet
+(`eslint.config.mjs`).
+
+## Access: passwords from the sheet
+
+Every page except the homepage is behind a password. Which route needs which key is set in one
+place, [`src/lib/navigation.ts`](src/lib/navigation.ts). A path not listed there is locked with
+`whole-web-view`, so a forgotten entry hides a page rather than exposing it.
+
+The passwords live in the **`keys`** tab (header on row 3: `Key | Value | Note`). A key's `Value`
+is its password; change it in the sheet and it applies within a minute. Each route names two keys:
+`access` to see it (`whole-web-view`) and `edit` to change what it shows (`whole-web-edit`). Today
+the only editable content is the onboarding checklist. The tab also holds `onboarding-view` and
+`onboarding-edit`, ready to be wired in: add the name to `accessKeys` and assign it to a route.
+
+How it works:
+
+- On a locked page the browser asks for the password once. The server checks it against the sheet,
+  and on success it is kept in `localStorage`. Later visits check the stored password with the
+  server quietly, and the prompt comes back only if it stopped working.
+- The page layout only _hides_ locked pages in the browser. What is actually protected is the
+  sheet data: the onboarding checklist and the archive's Q&A are sent only to requests that carry
+  a valid password (server actions and the archive API check it every time). Text written into a
+  page's code ships with it, so don't put anything secret there.
+- Editable content is read-only until the edit password is entered, in a „Povoliť úpravy“ form
+  above it. It is remembered the same way, and the server action that writes to the sheet checks
+  it on every change, so the view password alone can't tick boxes.
+- Passwords are stored in plain text in the browser. That is enough for an internal web with mock
+  content, not for sensitive data.
 
 ## Where the content lives
 
-- **`src/app/_data/content.ts`** — everything written by hand: candidates, shared topics, copy.
-- **The Google Sheet behind the Q&A form** — everything that changes without a deploy:
-  - sheet `otazky`: questions from the form plus the answers written next to them. A row is
-    published only when its `Zverejniť?` checkbox is ticked, and the asker's name is printed only
-    when their own consent column says it may be. `Odpoveď` is rendered as Markdown.
-  - sheet `eventy`: the meeting slots in „Stretnime sa" (`Názov`, `Forma`, `Termín`, `Popis`).
-    `Popis` is rendered as Markdown, so `[text](url)` links work.
-  - In both sheets the header is the **third** row; the two rows above it are instructions.
+All of it is in one spreadsheet ([`src/lib/google-sheets/spreadsheet.ts`](src/lib/google-sheets/spreadsheet.ts)),
+shared with the service account as **Editor** (the site writes ticks back).
 
-The sheet is read server-side by [`src/app/_services/sheets.ts`](src/app/_services/sheets.ts) (which
-imports `server-only`, so it can never be pulled into a client bundle) and served as JSON from
-`/api/content` by the route handler in [`src/app/api/content/`](src/app/api/content/). Private
-columns — contact details, moderation notes, unpublished rows — never leave the server. Responses are
-cached for a minute, so an edit in the sheet shows up on the site within about that long.
+### Infoweb: onboarding checklist
+
+The tab **`onboarding`**. Rows 1–2 are instructions and **row 3 is the header**:
+
+| ID  | Fáza | Úloha | Popis | Zodpovedný | Termín | Tím | Funo | Barča | Biely Medveď | Green | Kolohnáth | Zved | Žubro |
+| --- | ---- | ----- | ----- | ---------- | ------ | --- | ---- | ----- | ------------ | ----- | --------- | ---- | ----- |
+
+- Under `Tím` and each person: `1` = done, `0` = to do, empty = the task isn't theirs. The site
+  writes `1`/`0`, and refuses to tick an empty cell.
+- `ID` must be unique and stable: ticks from the site are written to the row with that ID.
+- `Fáza` should be one of the labels in `onboarding/_data/phases.ts`; anything else is listed under
+  „Ostatné“.
+- Columns are found by their header (case and diacritics don't matter), so they can be reordered.
+
+If the sheet can't be read, the page shows `seed.json` read-only, with a note saying so.
+
+### Changelog
+
+The tab **`changelog`** (header on row 3: `Timestamp | Route | Change | Note (manual)`) records
+every change to the checklist. The onboarding page shows the rows whose `Route` is `/onboarding`
+in its „História zmien“ tab. Rows come from two writers:
+
+- **The website** logs each tick and untick itself, tagged `[web]`.
+- **Edits made by hand** in the spreadsheet are logged by an Apps Script, tagged `[tabuľka]`.
+  Install it once: open the spreadsheet, go to Extensions → Apps Script, paste
+  [`google-apps-script/changelog.gs`](google-apps-script/changelog.gs) and save. It is a simple
+  `onEdit` trigger, so there's nothing else to set up. Google doesn't run it for the website's
+  own API writes, so nothing is logged twice. It can't see inserted or deleted rows, or sorting.
+
+`Note (manual)` is for people: anything written there shows under the change on the page. Keep the
+spreadsheet's time zone (File → Settings) on Bratislava so both writers' timestamps line up.
+
+### Archive: candidacy Q&A and events
+
+The tabs filled by the candidacy's Q&A form:
+
+- sheet `otazky`: questions from the form and the answers next to them. A row is published only
+  when its `Zverejniť?` checkbox is ticked, and the asker's name only when their consent column
+  allows it. `Odpoveď` is Markdown.
+- sheet `eventy`: meeting slots (`Názov`, `Forma`, `Termín`, `Popis`). `Popis` is Markdown.
+- In both sheets the header is the **third** row.
+
+It is read by `archiv/kandidatka2026/_services/content.ts` and served from
+`/archiv/kandidatka2026/api/content`, cached for a minute. The endpoint wants the archive's
+password (URI-encoded, in the `x-access-key` header). Private columns never leave the server.
 
 ### Environment
 
-`/api/content` needs a service account that the spreadsheet is shared with, in `.env.local` for
-local development and in the Netlify site settings for deploys:
+In `.env.local` for local development and in the Netlify site settings for deploys:
 
 ```
 GOOGLE_SERVICE_ACCOUNT_EMAIL = …@….iam.gserviceaccount.com
 GOOGLE_PRIVATE_KEY = -----BEGIN PRIVATE KEY-----\n…\n-----END PRIVATE KEY-----\n
-GOOGLE_SHEET_ID = …            # optional, defaults to the live spreadsheet
+GOOGLE_SHEET_ID = …            # optional; defaults to the site's spreadsheet (e.g. a copy for dev)
 ```
 
-Neither is `NEXT_PUBLIC_`-prefixed, so neither can end up in the browser bundle.
+None of them is `NEXT_PUBLIC_`-prefixed, so none can end up in the browser bundle.
 
 ## Deployment
 
 Netlify, via [`@netlify/plugin-nextjs`](https://github.com/opennextjs/opennextjs-netlify): the plugin
-maps the App Router's routes, the `/api/content` handler and the static assets onto Netlify's own
+maps the App Router's routes, route handlers, server actions and static assets onto Netlify's own
 primitives, so [`netlify.toml`](netlify.toml) declares no redirects or functions of its own.
 
 ## Scripts

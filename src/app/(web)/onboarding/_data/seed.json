@@ -1,0 +1,585 @@
+[
+  {
+    "id": "snem-temy",
+    "phase": "Na sneme",
+    "title": "Rozdeliť témy medzi členov N-SLSK",
+    "description": "Prijať uznesenie o tom, kto zastrešuje ktorú oblasť.",
+    "owner": "Náčelníctvo",
+    "due": "11. 10. 2026",
+    "status": {
+      "tim": true
+    }
+  },
+  {
+    "id": "snem-zasadnutie",
+    "phase": "Na sneme",
+    "title": "Určiť termín ďalšieho zasadnutia N-SLSK",
+    "description": "Dohodnúť termín a miesto prvého stretnutia s Ústredím.",
+    "owner": "Funo",
+    "due": "11. 10. 2026",
+    "status": {
+      "tim": true
+    }
+  },
+  {
+    "id": "pred-oznamenie",
+    "phase": "Pred prvým stretnutím",
+    "title": "Oznámiť, kto zodpovedá za ktorú tému",
+    "description": "Komu sa majú ozývať zamestnanci Ú-SLSK a skautská verejnosť — po oblastiach.",
+    "owner": "Funo + Green",
+    "due": "do 25. 10. 2026",
+    "status": {
+      "tim": true
+    }
+  },
+  {
+    "id": "pred-komisie",
+    "phase": "Pred prvým stretnutím",
+    "title": "Osloviť komisie, aby navrhli predsedov",
+    "description": "Výzva komisiám s termínom na návrhy.",
+    "owner": "Biely Medveď",
+    "due": "do 31. 10. 2026",
+    "status": {
+      "tim": false
+    }
+  },
+  {
+    "id": "pred-zahranicna",
+    "phase": "Pred prvým stretnutím",
+    "title": "Osloviť Zahraničnú radu kvôli komisárom pre WOSM a WAGGGS",
+    "description": "Rada navrhne komisárov, N-SLSK ich neskôr menuje.",
+    "owner": "Green",
+    "due": "do 31. 10. 2026",
+    "status": {
+      "tim": false
+    }
+  },
+  {
+    "id": "pred-dotaznik",
+    "phase": "Pred prvým stretnutím",
+    "title": "Vyplniť krátky dotazník",
+    "description": "Asi 10 minút: očakávania, kapacita a otázky pred prvým stretnutím.",
+    "owner": "každý sám",
+    "due": "do 20. 10. 2026",
+    "status": {
+      "funo": true,
+      "barca": true,
+      "biely-medved": false,
+      "green": true,
+      "kolohnath": false,
+      "zved": true,
+      "zubro": true
+    }
+  },
+  {
+    "id": "pred-pripravenost",
+    "phase": "Pred prvým stretnutím",
+    "title": "Prejsť si Hodnotenie pripravenosti člena N-SLSK",
+    "description": "29 výrokov áno/nie, výsledok je len pre teba. Ukáže, na čo sa oplatí pýtať na kurze.",
+    "owner": "každý sám",
+    "due": "do 5. 11. 2026",
+    "status": {
+      "funo": true,
+      "barca": false,
+      "biely-medved": false,
+      "green": false,
+      "kolohnath": false,
+      "zved": false,
+      "zubro": true
+    }
+  },
+  {
+    "id": "pred-podklady",
+    "phase": "Pred prvým stretnutím",
+    "title": "Prečítať si podklady (asi 1 hodina)",
+    "description": "Popis svojej roly, „Ako spolupracujeme Ú-SLSK & N-SLSK“, Harmonogram a agenda N-SLSK, Stanovy (časť o Náčelníctve) a Organizačný poriadok, kapitola 03.",
+    "owner": "každý sám",
+    "due": "do 5. 11. 2026",
+    "status": {
+      "funo": true,
+      "barca": false,
+      "biely-medved": true,
+      "green": false,
+      "kolohnath": false,
+      "zved": false,
+      "zubro": false
+    }
+  },
+  {
+    "id": "pred-predchodca",
+    "phase": "Pred prvým stretnutím",
+    "title": "Stretnúť sa s predchodcom v oblasti",
+    "description": "Odovzdanie agendy, kontaktov a rozbehnutých vecí — ideálne aj so zodpovedným zamestnancom Ú-SLSK. Netýka sa znovuzvolených.",
+    "owner": "každý + predchodca",
+    "due": "do 5. 11. 2026",
+    "status": {
+      "funo": false,
+      "barca": false,
+      "green": true,
+      "kolohnath": false,
+      "zubro": false
+    }
+  },
+  {
+    "id": "pred-email",
+    "phase": "Pred prvým stretnutím",
+    "title": "Vytvoriť skautskú e-mailovú adresu",
+    "description": "Plus pridať do skupín nacelnictvo@skauting.sk a zasadnutia@skauting.sk.",
+    "owner": "Funo + Ú-SLSK",
+    "due": "do 31. 10. 2026",
+    "status": {
+      "funo": true,
+      "barca": true,
+      "biely-medved": true,
+      "green": false,
+      "kolohnath": true,
+      "zved": true,
+      "zubro": false
+    }
+  },
+  {
+    "id": "pred-drive",
+    "phase": "Pred prvým stretnutím",
+    "title": "Pridať na Google Drive Náčelníctva a do kalendára SLSK",
+    "description": "",
+    "owner": "Funo + Ú-SLSK",
+    "due": "do 31. 10. 2026",
+    "status": {
+      "funo": true,
+      "barca": false,
+      "biely-medved": true,
+      "green": false,
+      "kolohnath": false,
+      "zved": true,
+      "zubro": true
+    }
+  },
+  {
+    "id": "pred-clickup",
+    "phase": "Pred prvým stretnutím",
+    "title": "Pridať do ClickUp",
+    "description": "Ak treba, Ú-SLSK zabezpečí krátke zaškolenie.",
+    "owner": "Funo + Ú-SLSK",
+    "due": "do 5. 11. 2026",
+    "status": {
+      "funo": false,
+      "barca": false,
+      "biely-medved": true,
+      "green": false,
+      "kolohnath": false,
+      "zved": true,
+      "zubro": false
+    }
+  },
+  {
+    "id": "pred-teepee",
+    "phase": "Pred prvým stretnutím",
+    "title": "Nastaviť funkciu v TeePee",
+    "description": "Vrátane doručovania všetkých časopisov.",
+    "owner": "Ú-SLSK",
+    "due": "do 5. 11. 2026",
+    "status": {
+      "funo": false,
+      "barca": false,
+      "biely-medved": true,
+      "green": false,
+      "kolohnath": false,
+      "zved": true,
+      "zubro": false
+    }
+  },
+  {
+    "id": "pred-mentor",
+    "phase": "Pred prvým stretnutím",
+    "title": "Určiť mentora",
+    "description": "Ideálne skúsenejší člen N-SLSK, ktorý pomôže s rozbehom a zodpovie otázky.",
+    "owner": "Funo",
+    "due": "do 5. 11. 2026",
+    "status": {
+      "funo": false,
+      "barca": false,
+      "green": false,
+      "kolohnath": false,
+      "zubro": false
+    }
+  },
+  {
+    "id": "kurz-harmonogram",
+    "phase": "Prvé stretnutie a Vstupný kurz",
+    "title": "Spoločne prejsť ročný harmonogram a agendu N-SLSK",
+    "description": "Zasadnutia, Malý snem, rozpočet — kto, čo a kedy počas roka.",
+    "owner": "Náčelníctvo",
+    "due": "6. – 8. 11. 2026",
+    "status": {
+      "tim": false
+    }
+  },
+  {
+    "id": "kurz-ucast",
+    "phase": "Prvé stretnutie a Vstupný kurz",
+    "title": "Absolvovať Vstupný kurz",
+    "description": "Riadenie, úlohy a zodpovednosti; pracovné metódy; stratégia; komunikácia; kontrola financií.",
+    "owner": "každý",
+    "due": "6. – 8. 11. 2026",
+    "status": {
+      "funo": false,
+      "barca": false,
+      "biely-medved": false,
+      "green": false,
+      "kolohnath": false,
+      "zved": false,
+      "zubro": false
+    }
+  },
+  {
+    "id": "kurz-dohoda",
+    "phase": "Prvé stretnutie a Vstupný kurz",
+    "title": "Podpísať Dohodu o záväzku člena N-SLSK",
+    "description": "V rámci Vstupného kurzu.",
+    "owner": "každý",
+    "due": "8. 11. 2026",
+    "status": {
+      "funo": false,
+      "barca": false,
+      "biely-medved": false,
+      "green": false,
+      "kolohnath": false,
+      "zved": false,
+      "zubro": false
+    }
+  },
+  {
+    "id": "kurz-konflikt",
+    "phase": "Prvé stretnutie a Vstupný kurz",
+    "title": "Vyplniť a podpísať Vyhlásenie ku konfliktu záujmov",
+    "description": "V rámci Vstupného kurzu.",
+    "owner": "každý",
+    "due": "8. 11. 2026",
+    "status": {
+      "funo": false,
+      "barca": false,
+      "biely-medved": false,
+      "green": false,
+      "kolohnath": false,
+      "zved": false,
+      "zubro": false
+    }
+  },
+  {
+    "id": "kurz-dvojica",
+    "phase": "Prvé stretnutie a Vstupný kurz",
+    "title": "Prvé 1:1 so svojou dvojicou z Ú-SLSK",
+    "description": "Spoznať sa, kde je oblasť dnes, zreálnenie roly a dohody dvojice: ako často, akým kanálom, do kedy odpovedáme, čo eskalujeme.",
+    "owner": "každý + dvojica z Ú",
+    "due": "8. 11. 2026",
+    "status": {
+      "funo": false,
+      "barca": false,
+      "biely-medved": false,
+      "green": false,
+      "kolohnath": false,
+      "zved": false,
+      "zubro": false
+    }
+  },
+  {
+    "id": "kurz-podpis",
+    "phase": "Prvé stretnutie a Vstupný kurz",
+    "title": "Nastaviť si e-mailový podpis člena N-SLSK",
+    "description": "",
+    "owner": "každý sám",
+    "due": "do 10. 11. 2026",
+    "status": {
+      "funo": false,
+      "barca": false,
+      "biely-medved": true,
+      "green": false,
+      "kolohnath": false,
+      "zved": true,
+      "zubro": false
+    }
+  },
+  {
+    "id": "kurz-zvesti",
+    "phase": "Prvé stretnutie a Vstupný kurz",
+    "title": "Napísať krátke info o sebe do Skautských zvestí",
+    "description": "Zároveň Ú-SLSK aktualizuje info na webe.",
+    "owner": "každý sám",
+    "due": "do 10. 11. 2026",
+    "status": {
+      "funo": false,
+      "barca": false,
+      "biely-medved": false,
+      "green": false,
+      "kolohnath": false,
+      "zved": false,
+      "zubro": false
+    }
+  },
+  {
+    "id": "m3-kompetencie",
+    "phase": "Do 3 mesiacov",
+    "title": "Prejsť a doplniť Kompetenčnú tabuľku vedenia SLSK",
+    "description": "Kto zastrešuje, kto rozhoduje, kto realizuje — po oblastiach.",
+    "owner": "Biely Medveď",
+    "due": "do 11. 1. 2027",
+    "status": {
+      "tim": false
+    }
+  },
+  {
+    "id": "m3-predsedovia",
+    "phase": "Do 3 mesiacov",
+    "title": "Menovať predsedov komisií",
+    "description": "",
+    "owner": "Náčelníctvo",
+    "due": "do 11. 1. 2027",
+    "status": {
+      "tim": false
+    }
+  },
+  {
+    "id": "m3-komisari",
+    "phase": "Do 3 mesiacov",
+    "title": "Menovať komisárov pre WOSM a WAGGGS",
+    "description": "",
+    "owner": "Náčelníctvo",
+    "due": "do 11. 1. 2027",
+    "status": {
+      "tim": false
+    }
+  },
+  {
+    "id": "m3-zastupca",
+    "phase": "Do 3 mesiacov",
+    "title": "Určiť zástupcu náčelníka SLSK",
+    "description": "",
+    "owner": "Náčelníctvo",
+    "due": "do 11. 1. 2027",
+    "status": {
+      "tim": false
+    }
+  },
+  {
+    "id": "oblast-funo",
+    "phase": "Do 3 mesiacov",
+    "title": "Dohodnúť s riaditeľkou Ú-SLSK spôsob vzájomného hodnotenia",
+    "description": "",
+    "owner": "Funo",
+    "due": "do 11. 1. 2027",
+    "status": {
+      "funo": false
+    }
+  },
+  {
+    "id": "oblast-barca",
+    "phase": "Do 3 mesiacov",
+    "title": "Spoznať Radu pre vzdelávanie, Programovú a Duchovnú radu a HKVS",
+    "description": "Krátke stretnutie s predsedami: čo riešia a čo od N-SLSK potrebujú.",
+    "owner": "Barča",
+    "due": "do 11. 1. 2027",
+    "status": {
+      "barca": false
+    }
+  },
+  {
+    "id": "oblast-medved-snem",
+    "phase": "Do 3 mesiacov",
+    "title": "Rozbehnúť prípravu Malého snemu",
+    "description": "Termín, miesto, program, správa o stave organizácie.",
+    "owner": "Biely Medveď",
+    "due": "do 30. 11. 2026",
+    "status": {
+      "biely-medved": true
+    }
+  },
+  {
+    "id": "oblast-medved-konflikt",
+    "phase": "Do 3 mesiacov",
+    "title": "Pripraviť aktualizáciu politiky konfliktu záujmov",
+    "description": "Každoročne v januári.",
+    "owner": "Biely Medveď",
+    "due": "do 31. 1. 2027",
+    "status": {
+      "biely-medved": false
+    }
+  },
+  {
+    "id": "oblast-green",
+    "phase": "Do 3 mesiacov",
+    "title": "Zmapovať partnerstvá",
+    "description": "RMS, ministerstvá, WOSM/WAGGGS, Cracow group — kto je kontakt a v akom stave je vzťah.",
+    "owner": "Green",
+    "due": "do 11. 1. 2027",
+    "status": {
+      "green": false
+    }
+  },
+  {
+    "id": "oblast-green-rady",
+    "phase": "Do 3 mesiacov",
+    "title": "Stretnúť sa s Radou pre komunikáciu a Zahraničnou radou",
+    "description": "",
+    "owner": "Green",
+    "due": "do 11. 1. 2027",
+    "status": {
+      "green": false
+    }
+  },
+  {
+    "id": "oblast-kolohnath",
+    "phase": "Do 3 mesiacov",
+    "title": "Spoznať Radu pre rozvoj",
+    "description": "",
+    "owner": "Kolohnáth",
+    "due": "do 11. 1. 2027",
+    "status": {
+      "kolohnath": false
+    }
+  },
+  {
+    "id": "oblast-kolohnath-sfh",
+    "phase": "Do 3 mesiacov",
+    "title": "Zistiť stav implementácie Safe from Harm",
+    "description": "",
+    "owner": "Kolohnáth",
+    "due": "do 11. 1. 2027",
+    "status": {
+      "kolohnath": false
+    }
+  },
+  {
+    "id": "oblast-zved",
+    "phase": "Do 3 mesiacov",
+    "title": "Stretnúť sa s Hospodárskou a Revíznou radou",
+    "description": "",
+    "owner": "Zved",
+    "due": "do 30. 11. 2026",
+    "status": {
+      "zved": true
+    }
+  },
+  {
+    "id": "oblast-zved-rozpocet",
+    "phase": "Do 3 mesiacov",
+    "title": "Nastaviť harmonogram rozpočtu na rok 2027",
+    "description": "Pripomienky N-SLSK v novembri, schvaľovanie vo februári, Malý snem v marci.",
+    "owner": "Zved",
+    "due": "do 30. 11. 2026",
+    "status": {
+      "zved": false
+    }
+  },
+  {
+    "id": "oblast-zubro",
+    "phase": "Do 3 mesiacov",
+    "title": "Zostaviť strategickú komisiu",
+    "description": "Nábor členov a prvé stretnutie.",
+    "owner": "Žubro",
+    "due": "do 11. 1. 2027",
+    "status": {
+      "zubro": false
+    }
+  },
+  {
+    "id": "oblast-zubro-report",
+    "phase": "Do 3 mesiacov",
+    "title": "Pripraviť prvý report o napĺňaní stratégie",
+    "description": "Náčelníctvo ho dostáva trikrát do roka.",
+    "owner": "Žubro",
+    "due": "do 11. 1. 2027",
+    "status": {
+      "zubro": false
+    }
+  },
+  {
+    "id": "d100-checkin",
+    "phase": "Prvých 100 dní",
+    "title": "Check-in po 6 – 8 týždňoch",
+    "description": "Ako sa ti darí, čo ti chýba, fungujú naše dohody?",
+    "owner": "každý + mentor",
+    "due": "do 3. 1. 2027",
+    "status": {
+      "funo": false,
+      "barca": false,
+      "biely-medved": false,
+      "green": false,
+      "kolohnath": false,
+      "zved": false,
+      "zubro": false
+    }
+  },
+  {
+    "id": "d100-1na1",
+    "phase": "Prvých 100 dní",
+    "title": "Pravidelné 1:1 s dvojicou z Ú-SLSK",
+    "description": "Prvé tri mesiace raz mesačne, potom raz za kvartál.",
+    "owner": "každý + dvojica z Ú",
+    "due": "priebežne",
+    "status": {
+      "funo": false,
+      "barca": false,
+      "biely-medved": false,
+      "green": false,
+      "kolohnath": false,
+      "zved": false,
+      "zubro": false
+    }
+  },
+  {
+    "id": "d100-porada",
+    "phase": "Prvých 100 dní",
+    "title": "Zúčastniť sa porady Ústredia",
+    "description": "Aspoň raz za polrok, online alebo osobne.",
+    "owner": "každý",
+    "due": "do 28. 2. 2027",
+    "status": {
+      "funo": false,
+      "barca": false,
+      "biely-medved": false,
+      "green": false,
+      "kolohnath": false,
+      "zved": false,
+      "zubro": false
+    }
+  },
+  {
+    "id": "refl-roly",
+    "phase": "Reflexia",
+    "title": "Revízia rozdelenia rolí v N-SLSK",
+    "description": "Rozdelenie rolí je pracovné — po 100 dňoch ho spolu prehodnotíme.",
+    "owner": "Náčelníctvo",
+    "due": "po 100 dňoch",
+    "status": {
+      "tim": false
+    }
+  },
+  {
+    "id": "refl-kodex",
+    "phase": "Reflexia",
+    "title": "Upraviť kompetenčnú tabuľku a kódex spolupráce",
+    "description": "Podľa toho, čo sme sa naučili v prvých mesiacoch.",
+    "owner": "Náčelníctvo + Ú-SLSK",
+    "due": "po 100 dňoch",
+    "status": {
+      "tim": false
+    }
+  },
+  {
+    "id": "refl-spatna-vazba",
+    "phase": "Reflexia",
+    "title": "Dať spätnú väzbu na onboarding",
+    "description": "Čo ne/bolo prínosné, čo sme potrebovali vedieť skôr.",
+    "owner": "každý",
+    "due": "po 100 dňoch",
+    "status": {
+      "funo": false,
+      "barca": false,
+      "biely-medved": false,
+      "green": false,
+      "kolohnath": false,
+      "zved": false,
+      "zubro": false
+    }
+  }
+]
