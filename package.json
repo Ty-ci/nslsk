@@ -23,6 +23,7 @@
   "dependencies": {
     "next": "^15.5.9",
     "react": "^19.2.7",
+    "react-aria-components": "^1.22.1",
     "react-dom": "^19.2.7",
     "react-markdown": "^10.1.0",
     "remark-gfm": "^4.0.1",

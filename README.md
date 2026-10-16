@@ -102,8 +102,8 @@ shared with the service account as **Editor** (the site writes ticks back).
 
 The tab **`onboarding`**. Rows 1–2 are instructions and **row 3 is the header**:
 
-| ID  | Fáza | Úloha | Popis | Zodpovedný | Termín | Tím | Funo | Barča | Biely Medveď | Green | Kolohnáth | Zved | Žubro |
-| --- | ---- | ----- | ----- | ---------- | ------ | --- | ---- | ----- | ------------ | ----- | --------- | ---- | ----- |
+| ID  | Fáza | Úloha | Popis | Zodpovedný | Termín | Tím | Funo | Barča | Biely Medveď | Green | Kolohnáth | Zved | Žubro | Zdroj | Dôležitosť |
+| --- | ---- | ----- | ----- | ---------- | ------ | --- | ---- | ----- | ------------ | ----- | --------- | ---- | ----- | ----- | ---------- |
 
 - Under `Tím` and each person: `1` = done, `0` = to do, empty = the task isn't theirs. The site
   writes `1`/`0`, and refuses to tick an empty cell.
@@ -126,6 +126,9 @@ in its „História zmien“ tab. Rows come from two writers:
   [`google-apps-script/changelog.gs`](google-apps-script/changelog.gs) and save. It is a simple
   `onEdit` trigger, so there's nothing else to set up. Google doesn't run it for the website's
   own API writes, so nothing is logged twice. It can't see inserted or deleted rows, or sorting.
+  Edits to one task row within 10 minutes of each other become a single entry
+  (`„Úloha“ — Funo: hotovo; Termín: „…“ → „…“`), rewritten with each edit; a Note on the entry
+  closes it, and the next edit starts a new one. After changing the script, paste it again.
 
 `Note (manual)` is for people: anything written there shows under the change on the page. Keep the
 spreadsheet's time zone (File → Settings) on Bratislava so both writers' timestamps line up.

@@ -3,17 +3,16 @@
 import { useState } from 'react'
 
 import Avatar from '@/app/(web)/_components/Avatar'
-import EditUnlock from '@/app/(web)/_components/EditUnlock'
 import ProgressBar from '@/app/(web)/_components/ProgressBar'
 import { people, type PersonKey } from '@/app/(web)/_data/people'
 import SheetLink from '@/app/(web)/onboarding/_components/SheetLink'
 import TaskItem from '@/app/(web)/onboarding/_components/TaskItem'
-import { phases } from '@/app/(web)/onboarding/_data/phases'
 import type { AssigneeKey, OnboardingData, OnboardingTask } from '@/app/(web)/onboarding/_lib/types'
-import { setTaskStatus } from '@/app/(web)/onboarding/actions'
-import { editPasswordFor, useEditAccess } from '@/lib/access/client'
-
-const assigneeOrder: AssigneeKey[] = ['tim', ...people.map((person) => person.key)]
+import {
+  assigneeOrder,
+  type ChecklistState,
+  groupByPhase,
+} from '@/app/(web)/onboarding/_lib/useChecklist'
 
 /** The boxes a task shows in the current view: its team box, or its people's. */
 const visibleAssignees = (task: OnboardingTask, selected: PersonKey | null): AssigneeKey[] =>
@@ -43,87 +42,22 @@ const progressOf = (tasks: OnboardingTask[], who: AssigneeKey | null) =>
     { done: 0, total: 0 },
   )
 
-// Groups in the order of `phases`; a `Fáza` the timeline doesn't know (a typo
-// in the sheet, a new phase) still shows, under „Ostatné", at the end.
-const groupByPhase = (tasks: OnboardingTask[]) => {
-  const known = new Set<string>(phases.map((phase) => phase.label))
-  const groups = phases.map((phase) => ({
-    label: phase.label as string,
-    when: phase.when as string,
-    tasks: tasks.filter((task) => task.phase === phase.label),
-  }))
-  const other = tasks.filter((task) => !known.has(task.phase))
-
-  return [...groups, { label: 'Ostatné', when: '', tasks: other }].filter(
-    (group) => group.tasks.length > 0,
-  )
-}
-
 type ChecklistProps = {
   data: OnboardingData
+  checklist: ChecklistState
   initialPerson: PersonKey | null
 }
 
-const Checklist = ({ data, initialPerson }: ChecklistProps) => {
-  const [tasks, setTasks] = useState(data.tasks)
+// The checklist as a list, one person (or the whole team) at a time.
+const Checklist = ({ data, checklist, initialPerson }: ChecklistProps) => {
+  const { tasks } = data
+  const { readOnly, isBusy, toggle, errors } = checklist
   const [selected, setSelected] = useState<PersonKey | null>(initialPerson)
-  const [busy, setBusy] = useState<ReadonlySet<string>>(new Set())
-  const [errors, setErrors] = useState<Record<string, string>>({})
-  const edit = useEditAccess('/onboarding')
-  // Mock data can't be saved anywhere; real data needs the edit password.
-  const isMock = data.source !== 'sheet'
-  const readOnly = isMock || edit.state !== 'open'
 
   const select = (key: PersonKey | null) => {
     setSelected(key)
     // Shareable without a server round trip: `?kto=zved` opens Zved's view.
     window.history.replaceState(null, '', key ? `?kto=${key}` : window.location.pathname)
-  }
-
-  const setCell = (taskId: string, assignee: AssigneeKey, done: boolean) =>
-    setTasks((current) =>
-      current.map((task) =>
-        task.id === taskId ? { ...task, status: { ...task.status, [assignee]: done } } : task,
-      ),
-    )
-
-  const markBusy = (key: string, on: boolean) =>
-    setBusy((current) => {
-      const next = new Set(current)
-      if (on) {
-        next.add(key)
-      } else {
-        next.delete(key)
-      }
-
-      return next
-    })
-
-  // Optimistic: the box flips at once and flips back, with a reason, if the
-  // sheet refuses the write.
-  const toggle = async (taskId: string, assignee: AssigneeKey, done: boolean) => {
-    const key = `${taskId}:${assignee}`
-    setCell(taskId, assignee, done)
-    setErrors((current) =>
-      Object.fromEntries(Object.entries(current).filter(([id]) => id !== taskId)),
-    )
-    markBusy(key, true)
-
-    const result = await setTaskStatus(
-      editPasswordFor('/onboarding'),
-      taskId,
-      assignee,
-      done,
-    ).catch(() => ({
-      ok: false as const,
-      error: 'Zmenu sa nepodarilo uložiť. Skús to znova.',
-    }))
-
-    if (!result.ok) {
-      setCell(taskId, assignee, !done)
-      setErrors((current) => ({ ...current, [taskId]: result.error }))
-    }
-    markBusy(key, false)
   }
 
   const visibleTasks = tasks.filter((task) => visibleAssignees(task, selected).length > 0)
@@ -197,19 +131,6 @@ const Checklist = ({ data, initialPerson }: ChecklistProps) => {
       </aside>
 
       <div>
-        {isMock ? (
-          <p className="mb-6 rounded-card bg-blue-tint p-4 text-sm/6 text-navy">
-            Google hárok sa teraz nepodarilo načítať, takže vidíš ukážkové dáta. Zaškrtávanie je
-            vypnuté — zmeny by sa nikam neuložili.
-          </p>
-        ) : null}
-
-        {!isMock && edit.state === 'locked' ? (
-          <EditUnlock className="mb-6" onUnlock={edit.unlock}>
-            Checklist je len na čítanie. Odškrtávať môžeš po zadaní hesla na úpravy.
-          </EditUnlock>
-        ) : null}
-
         <div className="mb-4 rounded-card border border-line bg-white px-4 py-3">
           <h2 className="font-semibold text-navy">
             {person ? `${person.nickname} — ${person.area}` : 'Celé náčelníctvo'}
@@ -267,8 +188,8 @@ const Checklist = ({ data, initialPerson }: ChecklistProps) => {
                     task={task}
                     assignees={visibleAssignees(task, selected)}
                     readOnly={readOnly}
-                    isBusy={(assignee) => busy.has(`${task.id}:${assignee}`)}
-                    onToggle={(assignee, done) => void toggle(task.id, assignee, done)}
+                    isBusy={(assignee) => isBusy(task.id, assignee)}
+                    onToggle={(assignee, done) => toggle(task.id, assignee, done)}
                     error={errors[task.id]}
                   />
                 ))}

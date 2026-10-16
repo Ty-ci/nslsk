@@ -2,7 +2,7 @@
 // spreadsheet. Like the archive's tabs, two rows of instructions sit above the
 // header on row 3:
 //
-//   ID | Fáza | Úloha | Popis | Zodpovedný | Termín | Tím | Funo | Barča | … | Žubro
+//   ID | Fáza | Úloha | Popis | Zodpovedný | Termín | Tím | Funo | Barča | … | Žubro | Zdroj | Dôležitosť
 //
 // Under `Tím` and each person: 1 = done, 0 = to do, empty = not theirs. When Google fails, the page falls back to the bundled
 // seed (`_data/seed.json`) and becomes read-only.
@@ -53,6 +53,8 @@ const locateColumns = (headerRow: string[]) => {
       key,
       at: find((value) => value === normalize(header), 6 + index),
     })),
+    source: find((header) => header.startsWith('zdroj'), 6 + assigneeHeaders.length),
+    importance: find((header) => header.startsWith('dolezitost'), 7 + assigneeHeaders.length),
   }
 }
 
@@ -83,6 +85,8 @@ const parseTasks = (rows: Rows): OnboardingTask[] => {
         description: cell(row, columns.description),
         owner: cell(row, columns.owner),
         due: cell(row, columns.due),
+        source: cell(row, columns.source),
+        importance: cell(row, columns.importance),
         status,
       }
     })

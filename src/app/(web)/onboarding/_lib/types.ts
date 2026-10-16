@@ -16,6 +16,10 @@ export type OnboardingTask = {
   description: string
   owner: string
   due: string
+  /** Which documents the task comes from. Absent in the seed. */
+  source?: string
+  /** `vysoká`, `stredná` or `nízka`. Absent in the seed. */
+  importance?: string
   /**
    * One entry per assignee the task applies to: `true` done, `false` to do. An
    * assignee missing here means the task isn't theirs (an empty cell).

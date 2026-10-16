@@ -16,7 +16,7 @@ type TaskItemProps = {
   error?: string
 }
 
-const nicknameOf = (key: AssigneeKey): string =>
+export const nicknameOf = (key: AssigneeKey): string =>
   key === 'tim' ? 'Tím' : (people.find((person) => person.key === key)?.nickname ?? key)
 
 /** `do 25. 10. 2026` → that day, or `undefined` for a deadline in words. */
@@ -33,7 +33,7 @@ const shortDue = (due: string): string => {
   return due.endsWith(year) ? due.slice(0, -year.length).trimEnd() : due
 }
 
-const isOverdue = (due: string): boolean => {
+export const isOverdue = (due: string): boolean => {
   const date = parseDue(due)
   const today = new Date()
   today.setHours(0, 0, 0, 0)
@@ -43,7 +43,7 @@ const isOverdue = (due: string): boolean => {
 
 // The only part of a row allowed to raise its voice: a deadline that has passed
 // on a task still open.
-const DueDate = ({ due, overdue }: { due: string; overdue: boolean }) => (
+export const DueDate = ({ due, overdue }: { due: string; overdue: boolean }) => (
   <span
     className={`whitespace-nowrap tabular-nums ${overdue ? 'font-semibold text-[#8a1c1c]' : ''}`}
   >
@@ -169,6 +169,13 @@ const DoneMark = () => (
   </svg>
 )
 
+const Details = ({ id, hidden, task }: { id: string; hidden: boolean; task: OnboardingTask }) => (
+  <div id={id} hidden={hidden} className="mt-1.5 max-w-[65ch] text-sm/6 text-pretty">
+    {task.description ? <p>{task.description}</p> : null}
+    {task.source ? <p className="mt-1 text-xs text-neutral-400">Zdroj: {task.source}</p> : null}
+  </div>
+)
+
 // One task, read in a fixed order: status and title on the first line, the
 // deadline aligned on the right so a phase's dates scan as one column, and
 // who/what-kind as a single quiet line underneath.
@@ -181,10 +188,12 @@ const TaskItem = (props: TaskItemProps) => {
   const done = assignees.length > 0 && doneCount === assignees.length
   const overdue = !done && task.due !== '' && isOverdue(task.due)
   const titleId = `task-${task.id}`
+  const hasDetails = Boolean(task.description || task.source)
 
   const meta = [
     { key: 'owner', node: task.owner || null },
     { key: 'team', node: task.status.tim === undefined ? null : <TeamMark /> },
+    { key: 'importance', node: task.importance ? `${task.importance} dôležitosť` : null },
     // On phones the deadline joins this line instead of its own column.
     {
       key: 'due',
@@ -196,7 +205,7 @@ const TaskItem = (props: TaskItemProps) => {
     },
     {
       key: 'details',
-      node: task.description ? (
+      node: hasDetails ? (
         <DetailsToggle
           open={showDetails}
           controls={detailsId}
@@ -250,15 +259,7 @@ const TaskItem = (props: TaskItemProps) => {
 
           <MetaLine items={meta} />
 
-          {task.description ? (
-            <p
-              id={detailsId}
-              hidden={!showDetails}
-              className="mt-1.5 max-w-[65ch] text-sm/6 text-pretty"
-            >
-              {task.description}
-            </p>
-          ) : null}
+          {hasDetails ? <Details id={detailsId} hidden={!showDetails} task={task} /> : null}
 
           {single ? null : <PersonBoxes {...props} titleId={titleId} />}
 
