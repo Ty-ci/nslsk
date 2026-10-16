@@ -13,6 +13,11 @@ const destinations = [
     title: 'Onboarding',
     text: 'Checklist pre nové Náčelníctvo.',
   },
+  {
+    href: '/vyzvy',
+    title: 'Otvorené výzvy',
+    text: 'Otvorené výzvy pre dobrovoľníkov a poradné zbory, s termínmi a súvislosťami.',
+  },
   // {
   //   href: '/archiv/kandidatka2026',
   //   title: 'Archív: Kandidatúra 2026',

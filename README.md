@@ -54,6 +54,12 @@ src/
         _data/seed.json           mock tasks, shown read-only if the sheet can't be read
         _data/phases.ts           the onboarding timeline
         _components/              checklist UI
+      vyzvy/                      /vyzvy — sheet-backed open calls
+        page.tsx                  intro, then tabs: Výzvy | Dáta
+        actions.ts                server action: the calls (+ drafts and sheet issues for editors)
+        _lib/sheet.ts             reads the `vyzvy` tab, works out each call's status (server-only)
+        _lib/calls.ts             labels, sorting, filter options
+        _components/              cards, filters, process timeline, sheet check
     archiv/kandidatka2026/        THE ARCHIVE (own root layout)
       layout.tsx, archive.css     the poster look, scoped to the archive
       page.tsx                    the one-pager
@@ -75,7 +81,8 @@ place, [`src/lib/navigation.ts`](src/lib/navigation.ts). A path not listed there
 The passwords live in the **`keys`** tab (header on row 3: `Key | Value | Note`). A key's `Value`
 is its password; change it in the sheet and it applies within a minute. Each route names two keys:
 `access` to see it (`whole-web-view`) and `edit` to change what it shows (`whole-web-edit`). Today
-the only editable content is the onboarding checklist. The tab also holds `onboarding-view` and
+the only editable content is the onboarding checklist; on `/vyzvy` the edit password shows drafts
+and the sheet check instead. The tab also holds `onboarding-view` and
 `onboarding-edit`, ready to be wired in: add the name to `accessKeys` and assign it to a route.
 
 How it works:
@@ -113,6 +120,34 @@ The tab **`onboarding`**. Rows 1–2 are instructions and **row 3 is the header*
 - Columns are found by their header (case and diacritics don't matter), so they can be reordered.
 
 If the sheet can't be read, the page shows `seed.json` read-only, with a note saying so.
+
+### Infoweb: open calls
+
+The tab **`vyzvy`**. Rows 1–2 are instructions and **row 3 is the header**:
+
+| ID  | Názov | Typ | Proces | Popis | Náročnosť | Kontakt | Odkaz | Zverejniť od | Uzávierka | Stav |
+| --- | ----- | --- | ------ | ----- | --------- | ------- | ----- | ------------ | --------- | ---- |
+
+- Only `Názov` is required. The page is a signpost: `Popis` is a teaser of a sentence or two, and
+  `Odkaz` leads to the full call document.
+- `Typ` and `Proces` are free text. The filter chips are built from the values the column holds,
+  and values that differ only in case or accents count as one.
+- A call's status comes from its dates. Before `Zverejniť od` it shows as upcoming. In the last 7
+  days before `Uzávierka` it's marked as closing soon, and once the deadline passes it's closed and
+  moves behind „Zobraziť uzavreté výzvy“. A deadline without a time runs to the end of that day.
+  No `Uzávierka` means a rolling call.
+- `Stav` only overrides that: `Koncept` hides the call from everyone without the edit password.
+  `Obsadené`, `Zrušené` or `Uzavreté` close it early.
+- `ID` gives the card a stable link (`/vyzvy#id`). When it's empty, the ID is made from the title,
+  so the link changes if the title does.
+- Columns are found by their header, so they can be reordered, and columns the site doesn't know
+  (e.g. internal notes) are ignored.
+
+With the edit password, the page's „Dáta“ tab lists everything the site couldn't read (bad dates,
+links that aren't web addresses, duplicate IDs, unknown `Stav` values, …) by row, and shows each row
+as the site understands it. Changes in the sheet show up on the next load; there is no cache. If the
+sheet can't be read, the page says so and offers a retry: there's no mock data here, because a
+made-up call linking to a real-looking document would be worse than none.
 
 ### Changelog
 

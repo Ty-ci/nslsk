@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 
-import SheetLink from '@/app/(web)/onboarding/_components/SheetLink'
+import SheetLink from '@/app/(web)/_components/SheetLink'
 import type { ChangelogResult } from '@/app/(web)/onboarding/_lib/types'
 import { getOnboardingChangelog } from '@/app/(web)/onboarding/actions'
 import { passwordFor } from '@/lib/access/client'

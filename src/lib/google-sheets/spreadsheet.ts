@@ -1,5 +1,6 @@
 // The one spreadsheet behind the whole site. Its tabs: `otazky` and `eventy`
-// (archive), `onboarding` (the checklist) and `keys` (passwords, see
+// (archive), `onboarding` (the checklist), `vyzvy` (open calls), `changelog`
+// and `keys` (passwords, see
 // `src/lib/access/`).
 
 import 'server-only'

@@ -2,13 +2,13 @@
 
 import { useState } from 'react'
 
+import SheetLink from '@/app/(web)/_components/SheetLink'
 import Tabs from '@/app/(web)/_components/Tabs'
 import type { PersonKey } from '@/app/(web)/_data/people'
 import ChangelogPanel from '@/app/(web)/onboarding/_components/ChangelogPanel'
 import Checklist from '@/app/(web)/onboarding/_components/Checklist'
 import ChecklistGate from '@/app/(web)/onboarding/_components/ChecklistGate'
 import ChecklistTable from '@/app/(web)/onboarding/_components/ChecklistTable'
-import SheetLink from '@/app/(web)/onboarding/_components/SheetLink'
 import useChecklist, { assigneeOrder, groupByPhase } from '@/app/(web)/onboarding/_lib/useChecklist'
 
 type View = 'checklist' | 'zmeny' | 'data'

@@ -4,8 +4,8 @@ import { useState } from 'react'
 
 import Avatar from '@/app/(web)/_components/Avatar'
 import ProgressBar from '@/app/(web)/_components/ProgressBar'
+import SheetLink from '@/app/(web)/_components/SheetLink'
 import { people, type PersonKey } from '@/app/(web)/_data/people'
-import SheetLink from '@/app/(web)/onboarding/_components/SheetLink'
 import TaskItem from '@/app/(web)/onboarding/_components/TaskItem'
 import type { AssigneeKey, OnboardingData, OnboardingTask } from '@/app/(web)/onboarding/_lib/types'
 import {

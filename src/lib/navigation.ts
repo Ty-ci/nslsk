@@ -30,9 +30,16 @@ export const ROUTES: Route[] = [
     edit: 'whole-web-edit',
   },
   {
+    path: '/vyzvy',
+    label: 'Otvorené výzvy',
+    inNav: true,
+    access: 'whole-web-view',
+    edit: 'whole-web-edit',
+  },
+  {
     path: '/archiv/kandidatka2026',
     label: 'Archív',
-    inNav: true,
+    inNav: false,
     access: 'whole-web-view',
     edit: 'whole-web-edit',
   },
